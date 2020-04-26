@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ********** Copyright 2019 Roku Corp. All Rights Reserved. ********** -->
+
+<component name="MainScene" extends="BaseScene" >
+  <script type="text/brightscript" uri="MainScene.brs" />
+  <script type="text/brightscript" uri="DetailsViewLogic.brs" />
+  <script type="text/brightscript" uri="VideoPlayerLogic.brs" />
+  <children>
+    <LabelList
+        id = "mainmenu"
+        translation = "[160,92]"
+        itemSize = "[440,48]" >
+
+      <ContentNode id = "moviemenucontent" role = "content" >
+
+        <ContentNode title = "Search" />
+        <ContentNode title = "Shows" />
+
+      </ContentNode>
+
+    </LabelList>
+  </children>
+</component>
