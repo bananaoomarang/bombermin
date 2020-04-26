@@ -55,9 +55,8 @@ sub OnMenuItemSelected(event as Object)
     selectedIndex = event.GetData()
 
     rowContent = labelList.content.GetChild(selectedIndex)
-    print rowContent
     if rowContent.title = "Shows"
-        ShowShowView()
+        ShowShowsView()
     else if rowContent.title = "Search"
         ShowSearchView()
     end if
@@ -77,28 +76,6 @@ function ShowSearchView() as object
         view: searchView
     })
     return searchView
-end function
-
-function ShowShowView() as Object
-    ' Create an GridView object and assign some fields
-    m.grid = CreateObject("roSGNode", "GridView")
-    m.grid.SetFields({
-        style: "standard"
-        posterShape: "16x9"
-    })
-    content = CreateObject("roSGNode", "ContentNode")
-    ' This tells the GridView where to go to fetch the content
-    content.AddFields({
-        HandlerConfigGrid: {
-            name: "GridHandler"
-        }
-    })
-    m.grid.content = content
-    ' This will run the content handler and show the Grid
-    m.top.ComponentController.CallFunc("show", {
-        view: m.grid
-    })
-    return m.grid
 end function
 
 sub OnSearchQuery(event as Object)

@@ -5,6 +5,8 @@
   <script type="text/brightscript" uri="AppScene.brs" />
   <script type="text/brightscript" uri="DetailsViewLogic.brs" />
   <script type="text/brightscript" uri="VideoPlayerLogic.brs" />
+  <script type="text/brightscript" uri="EpisodePickerLogic.brs" />
+  <script type="text/brightscript" uri="ShowsView.brs" />
   <children>
     <LabelList
         id = "mainmenu"

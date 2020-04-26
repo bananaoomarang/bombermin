@@ -38,7 +38,8 @@ function ParseJsonToNodeArray(json as Object) as Object
             title: item.title
             Description: item.deck
             sdposterurl: item.image.screen_url
-            hdposterurl: item.image.screen_large_url
+            hdposterurl: item.image.screen_large_url,
+            guid: item.guid
         })
         shows.Push(contentItem)
     end for
