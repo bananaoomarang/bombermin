@@ -2,5 +2,5 @@
 
 'This function should be implemented in order to start RCL channel
 function GetSceneName() as String
-    return "MainScene"
+    return "AppScene"
 end function

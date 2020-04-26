@@ -1,7 +1,7 @@
 ' ********** Copyright 2019 Roku Corp. All Rights Reserved. **********
 
 sub GetContent()
-    apiKey = ""
+    apiKey = "@{api_key}"
     urlStr = "https://www.giantbomb.com/api/search/?format=json"
     if apiKey <> ""
         urlStr = urlStr + "&api_key=" + apiKey
@@ -12,7 +12,7 @@ sub GetContent()
     url.SetCertificatesFile("common:/certs/ca-bundle.crt")
     url.InitClientCertificates()
     ' build a search URL
-    searchUrl = baseUrl + "&query=" + url.Escape(m.top.query) ' search query is accessible through handler's interface
+    searchUrl = urlStr + "&query=" + url.Escape(m.top.query) ' search query is accessible through handler's interface
     ' searchUrl = baseUrl + "&query=" + "astroneer" ' search query is accessible through handler's interface
     url.SetUrl(searchUrl)
 

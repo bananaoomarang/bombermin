@@ -9,7 +9,7 @@ sub GetContent()
     ' feed = url.GetToString()
     ' this is for a sample, usually feed is retrieved from url using roUrlTransfer
 
-    apiKey = ""
+    apiKey = "@{api_key}"
     urlStr = "https://www.giantbomb.com/api/video_shows/?format=json"
     if apiKey <> ""
         urlStr = urlStr + "&api_key=" + apiKey

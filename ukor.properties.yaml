@@ -1,0 +1,10 @@
+name: giant-bomber
+version: 0.1.0
+buildDir: build
+sourceDir: src
+defaults:
+  falvor: main
+flavors:
+  main:
+    src:
+      - main
