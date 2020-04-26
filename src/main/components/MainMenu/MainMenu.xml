@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component name="MainMenu" extends="Group" >
+  <script type="text/brightscript" uri="MainMenu.brs" />
+  <children>
+    <LabelList
+        id = "menulist"
+        translation = "[160,92]"
+        itemSize = "[440,48]" >
+
+      <ContentNode id = "moviemenucontent" role = "content" >
+
+        <ContentNode title = "Search" />
+        <ContentNode title = "Shows" />
+
+      </ContentNode>
+
+    </LabelList>
+  </children>
+</component>

@@ -1,48 +1,7 @@
-' ********** Copyright 2019 Roku Corp. All Rights Reserved. **********
-
-'This is the main entry point to the channel scene.
-'This function will be called by library when channel is ready to be shown.
-' sub Show(args as Object)
-'     searchView = CreateObject("roSGNode", "SearchView")
-'     searchView.hintText = "Enter search term"
-'     ' query field will be changed each time user has typed something
-'     searchView.ObserveFieldScoped("query", "OnSearchQuery")
-'     searchView.ObserveFieldScoped("rowItemSelected", "OnSearchItemSelected")
-
-'     ' this will trigger job to show this screen
-'     m.top.ComponentController.CallFunc("show", {
-'         view: searchView
-'     })
-'     m.top.signalBeacon("AppLaunchComplete")
-' end sub
-
-
-' sub Show(args as Object)
-'     ' Create an GridView object and assign some fields
-'     m.grid = CreateObject("roSGNode", "GridView")
-'     m.grid.SetFields({
-'         style: "standard"
-'         posterShape: "16x9"
-'     })
-'     content = CreateObject("roSGNode", "ContentNode")
-'     ' This tells the GridView where to go to fetch the content
-'     content.AddFields({
-'         HandlerConfigGrid: {
-'             name: "GridHandler"
-'         }
-'     })
-'     m.grid.content = content
-'     ' This will run the content handler and show the Grid
-'     m.top.ComponentController.CallFunc("show", {
-'         view: m.grid
-'     })
-'     m.top.signalBeacon("AppLaunchComplete")
-' end sub
-
 sub Show(args as Object)
-    m.mainmenu = m.top.findNode("mainmenu")
-
-    m.mainmenu.ObserveFieldScoped("itemSelected", "OnMenuItemSelected")
+    m.mainmenu = CreateObject("roSGNode", "mainmenu")
+    menuList = m.mainmenu.findNode("menulist")
+    menuList.ObserveFieldScoped("itemSelected", "OnMenuItemSelected")
     m.top.ComponentController.CallFunc("show", {
         view: m.mainmenu
     })

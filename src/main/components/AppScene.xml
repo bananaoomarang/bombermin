@@ -7,19 +7,4 @@
   <script type="text/brightscript" uri="VideoPlayerLogic.brs" />
   <script type="text/brightscript" uri="EpisodePickerLogic.brs" />
   <script type="text/brightscript" uri="ShowsView.brs" />
-  <children>
-    <LabelList
-        id = "mainmenu"
-        translation = "[160,92]"
-        itemSize = "[440,48]" >
-
-      <ContentNode id = "moviemenucontent" role = "content" >
-
-        <ContentNode title = "Search" />
-        <ContentNode title = "Shows" />
-
-      </ContentNode>
-
-    </LabelList>
-  </children>
 </component>
