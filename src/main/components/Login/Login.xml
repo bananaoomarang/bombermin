@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component name="Login" extends="Group" >
+  <script type="text/brightscript" uri="Login.brs" />
+  <children>
+    <LayoutGroup
+        itemSpacing="[20]"
+        translation="[640,320]"
+        vertAlignment="center"
+        horizAlignment="center">
+      <Label text="Enter code from http://www.giantbomb.com/app/giant-bomber" />
+      <Keyboard id="keyboard" />
+
+      <ButtonGroup id="buttons" buttons="[&quot;OK&quot;, &quot;Cancel&quot;]" />
+    </LayoutGroup>
+  </children>
+</component>

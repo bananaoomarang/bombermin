@@ -3,18 +3,26 @@
 <component name="MainMenu" extends="Group" >
   <script type="text/brightscript" uri="MainMenu.brs" />
   <children>
-    <LabelList
-        id = "menulist"
-        translation = "[160,92]"
-        itemSize = "[440,48]" >
 
-      <ContentNode id = "moviemenucontent" role = "content" >
+    <LayoutGroup
+        itemSpacing="[20]"
+        translation="[640,320]"
+        vertAlignment="center"
+        horizAlignment="center">
+      <LabelList
+          id = "menulist"
+          translation = "[160,92]"
+          itemSize = "[440,48]" >
 
-        <ContentNode title = "Search" />
-        <ContentNode title = "Shows" />
+        <ContentNode id = "moviemenucontent" role = "content" >
 
-      </ContentNode>
+          <ContentNode title = "Login" />
+          <ContentNode title = "Search" />
+          <ContentNode title = "Shows" />
 
-    </LabelList>
+        </ContentNode>
+
+      </LabelList>
+    </LayoutGroup>
   </children>
 </component>

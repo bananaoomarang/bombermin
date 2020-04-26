@@ -1,5 +1,5 @@
 sub Show(args as Object)
-    m.mainmenu = CreateObject("roSGNode", "mainmenu")
+    m.mainmenu = CreateObject("roSGNode", "MainMenu")
     menuList = m.mainmenu.findNode("menulist")
     menuList.ObserveFieldScoped("itemSelected", "OnMenuItemSelected")
     m.top.ComponentController.CallFunc("show", {
@@ -18,6 +18,8 @@ sub OnMenuItemSelected(event as Object)
         ShowShowsView()
     else if rowContent.title = "Search"
         ShowSearchView()
+    else if rowContent.title = "Login"
+        ShowLoginView()
     end if
     ' detailsView = ShowDetailsView(rowContent, selectedIndex[1])
     ' detailsView.ObserveField("wasClosed", "OnDetailsWasClosed")
@@ -55,6 +57,13 @@ sub OnSearchQuery(event as Object)
     ' setting the clear content node or invalid will clear the grid with results
     searchView.content = content
 end sub
+
+function ShowLoginView() as object
+    m.login = CreateObject("roSGNode", "Login")
+    m.top.ComponentController.CallFunc("show", {
+        view: m.login
+    })
+end function
 
 sub OnSearchItemSelected(event as Object)
     grid = event.GetRoSGNode()
