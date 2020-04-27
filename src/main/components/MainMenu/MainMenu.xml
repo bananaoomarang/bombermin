@@ -3,9 +3,7 @@
 <component name="MainMenu" extends="Group" >
   <script type="text/brightscript" uri="MainMenu.brs" />
   <children>
-
     <LayoutGroup
-        itemSpacing="[20]"
         translation="[640,320]"
         vertAlignment="center"
         horizAlignment="center">
@@ -16,7 +14,7 @@
 
         <ContentNode id = "moviemenucontent" role = "content" >
 
-          <ContentNode title = "Login" />
+          <ContentNode id="loginbutton" title = "Login" />
           <ContentNode title = "Search" />
           <ContentNode title = "Shows" />
 

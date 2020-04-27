@@ -1,6 +1,5 @@
 sub Init()
     m.keyboard = m.top.FindNode("keyboard")
-    m.keyboard.text = "C5C5D3"
     m.buttons = m.top.FindNode("buttons")
 
     m.apiTokenTask = createObject("roSGNode", "ApiTokenTask")

@@ -9,7 +9,6 @@ sub Show(args as Object)
 end sub
 
 sub OnMenuItemSelected(event as Object)
-    m.mainmenu.visible = false
     labelList = event.GetRoSGNode()
     selectedIndex = event.GetData()
 
@@ -20,6 +19,8 @@ sub OnMenuItemSelected(event as Object)
         ShowSearchView()
     else if rowContent.title = "Login"
         ShowLoginView()
+    else if rowContent.title = "Logout"
+        Logout()
     end if
     ' detailsView = ShowDetailsView(rowContent, selectedIndex[1])
     ' detailsView.ObserveField("wasClosed", "OnDetailsWasClosed")
@@ -63,6 +64,21 @@ function ShowLoginView() as object
     m.top.ComponentController.CallFunc("show", {
         view: m.login
     })
+end function
+
+function Logout()
+    authRegistry = CreateObject("roRegistrySection", "Authentication")
+    if authRegistry.Exists("apiToken") then
+        authRegistry.Delete("apiToken")
+    end if
+
+    if authRegistry.Exists("apiTokenExpiry") then
+        authRegistry.Delete("apiTokenExpiry")
+    end if
+
+    authRegistry.Flush()
+
+    m.mainmenu.findNode("loginbutton").title = "Login"
 end function
 
 sub OnSearchItemSelected(event as Object)
