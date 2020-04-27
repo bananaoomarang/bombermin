@@ -1,7 +1,12 @@
 ' ********** Copyright 2019 Roku Corp. All Rights Reserved. **********
 
 sub GetContent()
-    apiKey = "@{api_key}"
+    authRegistry = CreateObject("roRegistrySection", "Authentication")
+    apiKey = ""
+    if authRegistry.Exists("apiToken") then
+        apiKey = authRegistry.Read("apiToken")
+    end if
+
     urlStr = "https://www.giantbomb.com/api/search/?format=json"
     if apiKey <> ""
         urlStr = urlStr + "&api_key=" + apiKey

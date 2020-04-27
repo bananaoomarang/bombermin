@@ -1,15 +1,12 @@
 ' ********** Copyright 2019 Roku Corp.  All Rights Reserved. **********
 
 sub GetContent()
-    ' url = CreateObject("roUrlTransfer")
-    ' url.SetUrl("FEED_URL")
-    ' url.SetCertificatesFile("common:/certs/ca-bundle.crt")
-    ' url.AddHeader("X-Roku-Reserved-Dev-Id", "")
-    ' url.InitClientCertificates()
-    ' feed = url.GetToString()
-    ' this is for a sample, usually feed is retrieved from url using roUrlTransfer
+    authRegistry = CreateObject("roRegistrySection", "Authentication")
+    apiKey = ""
+    if authRegistry.Exists("apiToken") then
+        apiKey = authRegistry.Read("apiToken")
+    end if
 
-    apiKey = "@{api_key}"
     urlStr = "https://www.giantbomb.com/api/video_shows/?format=json"
     if apiKey <> ""
         urlStr = urlStr + "&api_key=" + apiKey

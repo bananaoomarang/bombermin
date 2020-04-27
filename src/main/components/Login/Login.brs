@@ -1,9 +1,15 @@
 sub Init()
     m.keyboard = m.top.FindNode("keyboard")
+    m.keyboard.text = "C5C5D3"
     m.buttons = m.top.FindNode("buttons")
+
+    m.apiTokenTask = createObject("roSGNode", "ApiTokenTask")
+    m.apiTokenTask.ObserveField("content", "SetApiToken")
 
     m.top.ObserveField("focusedChild", "OnFocusedChildChanged")
     m.top.ObserveField("itemFocused", "OnItemFocusedChanged")
+
+    m.buttons.ObserveField("buttonSelected", "OnSubmit")
 end sub
 
 sub OnFocusedChildChanged()
@@ -26,3 +32,24 @@ function OnKeyEvent(key as String, press as Boolean) as Boolean
 
     return handled
 end function
+
+function makeAPIRequest(code as String)
+    m.apiTokenTask.control = "STOP"
+    m.apiTokenTask.setField("code", code)
+    m.apiTokenTask.control = "RUN"
+end function
+
+function OnSubmit():
+    code = m.keyboard.text
+    MakeAPIRequest(code)
+end function
+
+sub SetApiToken()
+    tokenInfo = m.apiTokenTask.content
+    if tokenInfo.status = "success" then
+        authRegistry = CreateObject("roRegistrySection", "Authentication")
+        authRegistry.Write("apiToken", tokenInfo.regToken)
+        authRegistry.Write("apiTokenExpiry", tokenInfo.expiration)
+        authRegistry.Flush()
+    end if
+end sub

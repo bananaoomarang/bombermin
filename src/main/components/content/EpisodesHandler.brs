@@ -1,7 +1,12 @@
 sub GetContent()
     videoShow = m.top.videoShow
 
-    apiKey = "@{api_key}"
+    authRegistry = CreateObject("roRegistrySection", "Authentication")
+    apiKey = ""
+    if authRegistry.Exists("apiToken") then
+        apiKey = authRegistry.Read("apiToken")
+    end if
+
     urlStr = "https://www.giantbomb.com/api/videos/?format=json"
     urlStr = urlStr + "&sort=publish_date:asc"
     if apiKey <> ""

@@ -4,7 +4,6 @@
   <script type="text/brightscript" uri="Login.brs" />
   <children>
     <LayoutGroup
-        itemSpacing="[20]"
         translation="[640,320]"
         vertAlignment="center"
         horizAlignment="center">

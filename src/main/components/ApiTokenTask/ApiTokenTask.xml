@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<component name="ApiTokenTask" extends="Task" >
+
+  <interface>
+    <field id="code" type="string" />
+    <field id="content" type="node" />
+  </interface>
+
+  <script type="text/brightscript" uri="ApiTokenTask.brs" />
+</component>
