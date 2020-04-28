@@ -7,10 +7,9 @@ function ShowShowsView() as Object
     })
     m.grid.ObserveField("rowItemSelected", "OnShowSelected")
     content = CreateObject("roSGNode", "ContentNode")
-    ' This tells the GridView where to go to fetch the content
     content.AddFields({
         HandlerConfigGrid: {
-            name: "GridHandler"
+            name: "ShowHandler"
         }
     })
     m.grid.content = content

@@ -48,7 +48,7 @@ sub OnSearchQuery(event as Object)
     if query.Len() > 2 ' perform search if user has typed at least three characters
         content.AddFields({
             HandlerConfigSearch: {
-                name: "CHSearch"
+                name: "SearchHandler"
                 query: query ' pass the query to the content handler
             }
         })

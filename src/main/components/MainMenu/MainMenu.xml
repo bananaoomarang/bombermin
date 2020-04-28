@@ -15,8 +15,8 @@
         <ContentNode id = "moviemenucontent" role = "content" >
 
           <ContentNode id="loginbutton" title = "Login" />
-          <ContentNode title = "Search" />
           <ContentNode title = "Shows" />
+          <ContentNode title = "Search" />
 
         </ContentNode>
 
