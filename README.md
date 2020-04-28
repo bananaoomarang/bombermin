@@ -14,6 +14,8 @@ Still needs:
 + A lot of UI work (right now it is pretty much stock Roku components)
 + A logo! (currently it is just the Roku placeholder art)
 
+Mainly want to figure out a logo and a better flow for logging in/out, then will try to 'release' in some fashion that doesn't require compiling/sideloading.
+
 ## Development ##
 
 First setup your Roku device [like so](https://blog.roku.com/developer/developer-setup-guide).
