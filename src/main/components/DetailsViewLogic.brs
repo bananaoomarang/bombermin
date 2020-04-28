@@ -31,12 +31,15 @@ end function
 sub OnDetailsContentSet(event as Object)
     details = event.GetRoSGNode()
     currentItem = event.GetData()
-    print "CURRENT ITEM"
-    print currentItem
     if currentItem <> invalid
         buttonsToCreate = []
 
         if currentItem.url <> invalid and currentItem.url <> ""
+
+            if currentItem.bookmarkPosition > 0
+                buttonsToCreate.Push({ title: "Continue", id: "continue" })
+            end if
+
             buttonsToCreate.Push({ title: "Play", id: "play" })
         end if
 
@@ -54,8 +57,8 @@ sub OnButtonSelected(event as Object)
     selectedButton = details.buttons.GetChild(event.GetData())
 
     if selectedButton.id = "play"
-        OpenVideoPlayer(details.content, details.itemFocused, details.isContentList)
-    else
-        ' handle all other button presses
+        details.content.bookmarkPosition = 0
     end if
+
+    OpenVideoPlayer(details.content, details.itemFocused, details.isContentList)
 end sub

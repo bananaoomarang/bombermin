@@ -20,10 +20,10 @@ sub GetContent()
     rawReponse = url.GetToString()
     json = ParseJSON(rawReponse)
 
-    if json.savedTime <> invalid and Type(json.savedTime) = "roString"
-        savedTime = Float(json.savedTime)
+    if json.savedTime <> invalid and Type(json.savedTime) = "String"
+        bookmarkPosition = json.savedTime.ToFloat()
     else
-        savedTime = 0 
+        bookmarkPosition = 0
     end if
 
     '
@@ -38,6 +38,6 @@ sub GetContent()
         sdposterurl: video.sdposterurl
         title: video.title
         url: video.url,
-        savedTime: savedTime
+        bookmarkPosition: bookmarkPosition
     })
 end sub
