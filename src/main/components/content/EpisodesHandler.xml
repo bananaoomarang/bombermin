@@ -5,4 +5,5 @@
         <field id="videoShow" type="node" />
     </interface>
     <script type="text/brightscript" uri="EpisodesHandler.brs" />
+    <script type="text/brightscript" uri="../../source/GBAPI.brs" />
 </component>

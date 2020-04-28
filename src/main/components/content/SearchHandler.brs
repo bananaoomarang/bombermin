@@ -1,28 +1,10 @@
 ' ********** Copyright 2019 Roku Corp. All Rights Reserved. **********
 
 sub GetContent()
-    authRegistry = CreateObject("roRegistrySection", "Authentication")
-    apiKey = ""
-    if authRegistry.Exists("apiToken") then
-        apiKey = authRegistry.Read("apiToken")
-    end if
-
-    urlStr = "https://www.giantbomb.com/api/search/?format=json"
-    if apiKey <> ""
-        urlStr = urlStr + "&api_key=" + apiKey
-    end if 
-
-    ' create a roUrlTransfer object
     url = CreateObject("roUrlTransfer")
-    url.SetCertificatesFile("common:/certs/ca-bundle.crt")
-    url.InitClientCertificates()
-    ' build a search URL
-    searchUrl = urlStr + "&query=" + url.Escape(m.top.query) ' search query is accessible through handler's interface
-    url.SetUrl(searchUrl)
-
-    ' make an API call
-    rawReponse = url.GetToString()
-    json = ParseJSON(rawReponse)
+    json = GETGBResource("/search", [
+        ["query", url.Escape(m.top.query)]
+    ]).json
     
     if json.results <> invalid and json.results.Count() > 0
         ' parsing reponse to content items

@@ -1,29 +1,11 @@
 sub GetContent()
     videoShow = m.top.videoShow
-
-    authRegistry = CreateObject("roRegistrySection", "Authentication")
-    apiKey = ""
-    if authRegistry.Exists("apiToken") then
-        apiKey = authRegistry.Read("apiToken")
-    end if
-
-    urlStr = "https://www.giantbomb.com/api/videos/?format=json"
-    urlStr = urlStr + "&sort=publish_date:asc"
-    offset = "0"
-    urlStr = urlStr + "&offset=" + offset
-    if apiKey <> ""
-        urlStr = urlStr + "&api_key=" + apiKey
-    end if
-
     show_id = videoShow.guid.Split("-")[1]
-    urlStr = urlStr + "&filter=video_show:" + show_id
-
-    url = CreateObject("roUrlTransfer")
-    url.SetCertificatesFile("common:/certs/ca-bundle.crt")
-    url.InitClientCertificates()
-    url.SetUrl(urlStr)
-    rawReponse = url.GetToString()
-    json = ParseJSON(rawReponse)
+    json = GETGBResource("/videos", [
+        ["sort", "publish_date:asc"],
+        ["offset", "0"],
+        ["filter", "video_show:" + show_id]
+    ]).json
 
     seasonAA = {
         children: []

@@ -4,4 +4,5 @@
     <field id="video" type="node" />
   </interface>
   <script type="text/brightscript" uri="VideoDetailsHandler.brs" />
+  <script type="text/brightscript" uri="../../source/GBAPI.brs" />
 </component>

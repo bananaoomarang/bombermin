@@ -1,27 +1,9 @@
 ' ********** Copyright 2019 Roku Corp.  All Rights Reserved. **********
 
 sub GetContent()
-    authRegistry = CreateObject("roRegistrySection", "Authentication")
-    apiKey = ""
-    if authRegistry.Exists("apiToken") then
-        apiKey = authRegistry.Read("apiToken")
-    end if
-
-    urlStr = "https://www.giantbomb.com/api/video_shows/?format=json"
-    if apiKey <> ""
-        urlStr = urlStr + "&api_key=" + apiKey
-    end if
-    urlStr = urlStr + "&sort=title:asc"
-
-    ' create a roUrlTransfer object
-    url = CreateObject("roUrlTransfer")
-    url.SetCertificatesFile("common:/certs/ca-bundle.crt")
-    url.InitClientCertificates()
-    url.SetUrl(urlStr)
-
-    ' make an API call
-    rawReponse = url.GetToString()
-    json = ParseJSON(rawReponse)
+    json = GETGBResource("/video_shows", [
+        ["sort", "title:asc"]
+    ]).json
     rootNodeArray = ParseJsonToNodeArray(json)
     m.top.content.Update(rootNodeArray)
 end sub

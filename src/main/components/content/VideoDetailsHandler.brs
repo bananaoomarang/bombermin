@@ -1,24 +1,9 @@
 sub GetContent()
     video = m.top.video
 
-    authRegistry = CreateObject("roRegistrySection", "Authentication")
-    apiKey = ""
-    if authRegistry.Exists("apiToken") then
-        apiKey = authRegistry.Read("apiToken")
-    end if
-
-    urlStr = "https://www.giantbomb.com/api/video/get-saved-time?format=json"
-    if apiKey <> ""
-        urlStr = urlStr + "&api_key=" + apiKey
-    end if
-    urlStr = urlStr + "&video_id=" + video.id
-
-    url = CreateObject("roUrlTransfer")
-    url.SetCertificatesFile("common:/certs/ca-bundle.crt")
-    url.InitClientCertificates()
-    url.SetUrl(urlStr)
-    rawReponse = url.GetToString()
-    json = ParseJSON(rawReponse)
+    json = GETGBResource("/video/get-saved-time", [
+        ["video_id", video.id]
+    ]).json
 
     if json.savedTime <> invalid and Type(json.savedTime) = "String"
         bookmarkPosition = json.savedTime.ToFloat()
