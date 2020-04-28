@@ -85,7 +85,8 @@ sub OnSearchItemSelected(event as Object)
     grid = event.GetRoSGNode()
     selectedIndex = event.GetData()
     rowContent = grid.content.GetChild(selectedIndex[0])
-    detailsView = ShowDetailsView(rowContent, selectedIndex[1])
+    video = rowContent.GetChild(selectedIndex[1])
+    detailsView = ShowDetailsView(video, selectedIndex[1], false)
     ' detailsView.ObserveField("wasClosed", "OnDetailsWasClosed")
 end sub
 
