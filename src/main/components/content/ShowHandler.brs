@@ -10,7 +10,8 @@ sub GetContent()
     urlStr = "https://www.giantbomb.com/api/video_shows/?format=json"
     if apiKey <> ""
         urlStr = urlStr + "&api_key=" + apiKey
-    end if 
+    end if
+    urlStr = urlStr + "&sort=title:asc"
 
     ' create a roUrlTransfer object
     url = CreateObject("roUrlTransfer")
