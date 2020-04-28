@@ -2,6 +2,8 @@
 
 ' There are two functions depending on whether or not a focus index and isContentList are provided
 function OpenVideoPlayer(content as Object, index as Integer, isContentList as Boolean) as Object
+    AddBookmarksHandler(content, index)
+
     ' Create MediaView Object and set its fields
     video = CreateObject("roSGNode", "MediaView")
     video.content = content
@@ -29,3 +31,15 @@ function OpenVideoPlayerItem(contentItem as Object) as Object
     })
     return video
 end function
+
+sub AddBookmarksHandler(contentItem as Object, index = invalid as Object)
+    contentItem.AddFields({
+        HandlerConfigBookmarks: {
+            name: "GBBookmarksHandler"
+            fields: {
+                minBookmark: 10
+                maxBookmark: 10
+            }
+        }
+    })
+end sub
