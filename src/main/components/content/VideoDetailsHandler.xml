@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="VideoDetailsHandler" extends="ContentHandler" xsi:noNamespaceSchemaLocation="https://devtools.web.roku.com/schema/RokuSceneGraph.xsd">
+  <interface>
+    <field id="video" type="node" />
+  </interface>
+  <script type="text/brightscript" uri="VideoDetailsHandler.brs" />
+</component>

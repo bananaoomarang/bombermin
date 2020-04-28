@@ -9,6 +9,8 @@ sub GetContent()
 
     urlStr = "https://www.giantbomb.com/api/videos/?format=json"
     urlStr = urlStr + "&sort=publish_date:asc"
+    offset = "0"
+    urlStr = urlStr + "&offset=" + offset
     if apiKey <> ""
         urlStr = urlStr + "&api_key=" + apiKey
     end if
@@ -29,6 +31,7 @@ sub GetContent()
 
     for each item in json.results:
         seasonAA.children.Push({
+            id: item.id
             title: item.name
             Description: item.deck
             sdposterurl: item.image.screen_url

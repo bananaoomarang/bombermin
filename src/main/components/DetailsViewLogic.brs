@@ -1,11 +1,21 @@
 ' ********** Copyright 2019 Roku Corp.  All Rights Reserved. **********
 
-function ShowDetailsView(content as Object, index as Integer, isContentList = true as Boolean) as Object
+function ShowDetailsView(video as Object, index as Integer, isContentList = true as Boolean) as Object
     details = CreateObject("roSGNode", "DetailsView")
     ' Observe the content, so that when it is set the callback
     ' function will run and the buttons can be created
     details.ObserveField("currentItem", "OnDetailsContentSet")
     details.ObserveField("buttonSelected", "OnButtonSelected")
+
+    content = CreateObject("roSGNode", "ContentNode")
+    content.AddFields({
+        HandlerConfigDetails: {
+            name: "VideoDetailsHandler",
+            fields: {
+                video: video 
+            }
+        }
+    })
     details.SetFields({
         content: content
         jumpToItem: index
@@ -21,6 +31,7 @@ end function
 sub OnDetailsContentSet(event as Object)
     details = event.GetRoSGNode()
     currentItem = event.GetData()
+    print "CURRENT ITEM"
     print currentItem
     if currentItem <> invalid
         buttonsToCreate = []
