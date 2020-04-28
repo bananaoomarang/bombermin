@@ -18,7 +18,6 @@ sub GetContent()
     url.InitClientCertificates()
     ' build a search URL
     searchUrl = urlStr + "&query=" + url.Escape(m.top.query) ' search query is accessible through handler's interface
-    ' searchUrl = baseUrl + "&query=" + "astroneer" ' search query is accessible through handler's interface
     url.SetUrl(searchUrl)
 
     ' make an API call
@@ -29,18 +28,17 @@ sub GetContent()
         ' parsing reponse to content items
         rows = {}
         for each item in json.results
-            contentItem = CreateObject("roSGNode", "ContentNode")
-            contentItem.SetFields({
+            rowItem = {
+                id: item.id,
                 title: item.name
                 shortDescriptionLine1: item.deck
                 Description: item.deck
                 sdposterurl: item.image.screen_url
                 hdposterurl: item.image.screen_large_url
                 url: item.high_url
-            })
+            }
             if rows[item.resource_type] = invalid then rows[item.resource_type] = []
-            ' rows[mediatype].Push(contentItem)
-            rows[item.resource_type].Push(contentItem)
+            rows[item.resource_type].Push(rowItem)
         end for
 
         ' building rows with specific content items

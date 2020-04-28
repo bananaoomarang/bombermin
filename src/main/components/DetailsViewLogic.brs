@@ -8,14 +8,18 @@ function ShowDetailsView(video as Object, index as Integer, isContentList = true
     details.ObserveField("buttonSelected", "OnButtonSelected")
 
     content = CreateObject("roSGNode", "ContentNode")
-    content.AddFields({
-        HandlerConfigDetails: {
-            name: "VideoDetailsHandler",
-            fields: {
-                video: video 
+    if video.id <> invalid and video.id <> ""
+        content.AddFields({
+            HandlerConfigDetails: {
+                name: "VideoDetailsHandler",
+                fields: {
+                    video: video
+                }
             }
-        }
-    })
+        })
+    else
+        content = video
+    end if
     details.SetFields({
         content: content
         jumpToItem: index
