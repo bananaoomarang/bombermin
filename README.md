@@ -1,4 +1,4 @@
-# Giant Bomber #
+# Bombermin #
 
 ## Development ##
 
