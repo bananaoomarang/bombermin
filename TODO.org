@@ -1,4 +1,5 @@
 ** Pagination for shows view
-*** For shows view
 *** For search view
+
 ** Better login flow
+** Less janky pagination on episodes view
