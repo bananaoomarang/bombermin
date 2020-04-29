@@ -1,9 +1,13 @@
 sub GetContent()
     videoShow = m.top.videoShow
+    page = m.top.page
+
+    offset = (page - 1) * 100
     show_id = videoShow.guid.Split("-")[1]
+
     json = GETGBResource("/videos", [
         ["sort", "publish_date:asc"],
-        ["offset", "0"],
+        ["offset", offset.ToStr()],
         ["filter", "video_show:" + show_id]
     ]).json
 
@@ -22,12 +26,28 @@ sub GetContent()
         })
     end for
 
+    if page > 1
+        seasonAA.children.Push({
+            id: "prev-page",
+            title: "Previous page"
+        })
+    end if
+
+    print json
+    if (offset + json.number_of_page_results) < json.number_of_total_results
+        seasonAA.children.Push({
+            id: "next-page",
+            title: "Next page"
+        })
+    end if
+
     seasonAA.Append({
         title: videoShow.title
         contentType: "section"
     })
+
     rootChildren = {
-       children: [seasonAA]
+        children: [seasonAA]
     }
     m.top.content.Update(rootChildren)
 end sub

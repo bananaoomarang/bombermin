@@ -11,6 +11,7 @@ function ShowEpisodePickerView(videoShow = invalid as Object) as Object
             name: "EpisodesHandler"
             fields: {
                 videoShow: videoShow
+                page: 1
             }
         }
     })
@@ -29,5 +30,50 @@ sub OnEpisodeSelected(event as Object)
     ' GetData returns the field that was being observed
     itemSelected = event.GetData()
     category = categoryList.content.GetChild(itemSelected[0])
-    details = ShowDetailsView(category.GetChild(itemSelected[1]), 0, false)
+    item = category.GetChild(itemSelected[1])
+
+    if item.id = "next-page"
+        NextPage(categoryList)
+        return
+    else if item.id = "prev-page"
+        PreviousPage(categoryList)
+        return
+    end if
+
+    details = ShowDetailsView(item, 0, false)
 end sub
+
+function NextPage(categoryList)
+    page = categoryList.content.HandlerConfigCategoryList.fields.page
+    LoadPage(categoryList, page + 1)
+end function
+
+function PreviousPage(categoryList)
+    page = categoryList.content.HandlerConfigCategoryList.fields.page
+    LoadPage(categoryList, page - 1)
+end function
+
+function LoadPage(categoryList as Object, page as Integer)
+    if page < 0
+        page = 0
+    end if
+
+    '
+    ' Is there like... A way to do this that's not this lol
+    '
+    ' Maybe we are supposed to modify the existing content to trigger the update
+    '
+    videoShow = categoryList.content.HandlerConfigCategoryList.fields.videoShow
+
+    content = CreateObject("roSGnode", "ContentNode")
+    content.AddFields({
+        HandlerConfigCategoryList: {
+            name: "EpisodesHandler"
+            fields: {
+                videoShow: videoShow
+                page: page
+            }
+        }
+    })
+    categoryList.content = content
+end function

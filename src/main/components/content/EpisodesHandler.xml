@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <component name="EpisodesHandler" extends="ContentHandler" xsi:noNamespaceSchemaLocation="https://devtools.web.roku.com/schema/RokuSceneGraph.xsd">
-    <interface>
-        <field id="videoShow" type="node" />
-    </interface>
-    <script type="text/brightscript" uri="EpisodesHandler.brs" />
-    <script type="text/brightscript" uri="../../source/GBAPI.brs" />
+  <interface>
+    <field id="videoShow" type="node" />
+    <field id="episodes" type="node" />
+    <field id="page" type="integer" />
+  </interface>
+  <script type="text/brightscript" uri="EpisodesHandler.brs" />
+  <script type="text/brightscript" uri="../../source/GBAPI.brs" />
 </component>
