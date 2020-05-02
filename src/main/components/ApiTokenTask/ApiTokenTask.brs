@@ -5,7 +5,7 @@ end sub
 sub getContent()
     content = CreateObject("roSGNode", "ContentNode")
 
-    urlStr = "https://www.giantbomb.com/app/giant-bomber/get-result?format=json"
+    urlStr = "https://www.giantbomb.com/app/bombermin/get-result?format=json"
     urlStr = urlStr + "&regCode=" + m.top.code
 
     url = CreateObject("roUrlTransfer")

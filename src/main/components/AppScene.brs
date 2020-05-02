@@ -20,7 +20,7 @@ sub OnMenuItemSelected(event as Object)
     else if rowContent.title = "Login"
         ShowLoginView()
     else if rowContent.title = "Logout"
-        Logout()
+        m.mainmenu.callFunc("Logout")
     end if
     ' detailsView = ShowDetailsView(rowContent, selectedIndex[1])
     ' detailsView.ObserveField("wasClosed", "OnDetailsWasClosed")
@@ -61,25 +61,22 @@ end sub
 
 function ShowLoginView() as object
     m.login = CreateObject("roSGNode", "Login")
+    m.login.ObserveField("closeSignal", "OnCloseLogin")
     m.top.ComponentController.CallFunc("show", {
         view: m.login
     })
 end function
 
-function Logout()
-    authRegistry = CreateObject("roRegistrySection", "Authentication")
-    if authRegistry.Exists("apiToken") then
-        authRegistry.Delete("apiToken")
+sub OnCloseLogin()
+    '
+    ' There surely has to be a better way to do this lol
+    ' Should investigate how eg the details view handles it
+    '
+    if m.login.closesignal = 1 or m.login.closesignal = 2
+        Show({})
     end if
-
-    if authRegistry.Exists("apiTokenExpiry") then
-        authRegistry.Delete("apiTokenExpiry")
-    end if
-
-    authRegistry.Flush()
-
-    m.mainmenu.findNode("loginbutton").title = "Login"
-end function
+end sub
+    
 
 sub OnSearchItemSelected(event as Object)
     grid = event.GetRoSGNode()

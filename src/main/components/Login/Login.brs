@@ -8,7 +8,7 @@ sub Init()
     m.top.ObserveField("focusedChild", "OnFocusedChildChanged")
     m.top.ObserveField("itemFocused", "OnItemFocusedChanged")
 
-    m.buttons.ObserveField("buttonSelected", "OnSubmit")
+    m.buttons.ObserveField("buttonSelected", "OnButtonSelected")
 end sub
 
 sub OnFocusedChildChanged()
@@ -38,9 +38,16 @@ function makeAPIRequest(code as String)
     m.apiTokenTask.control = "RUN"
 end function
 
-function OnSubmit():
+function OnButtonSelected(event as Object):
+    selectedIndex = event.getData()
+    selectedButton = m.buttons.getChild(selectedIndex)
     code = m.keyboard.text
-    MakeAPIRequest(code)
+
+    if selectedButton.text = "OK" and code <> ""
+        MakeAPIRequest(code)
+    else if selectedButton.text = "Cancel"
+        m.top.closesignal = 2
+    end if
 end function
 
 sub SetApiToken()
@@ -50,5 +57,6 @@ sub SetApiToken()
         authRegistry.Write("apiToken", tokenInfo.regToken)
         authRegistry.Write("apiTokenExpiry", tokenInfo.expiration)
         authRegistry.Flush()
+        m.top.closesignal = 1
     end if
 end sub

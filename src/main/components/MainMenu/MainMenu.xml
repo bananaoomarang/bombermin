@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <component name="MainMenu" extends="Group" >
+  <interface>
+    <function name="Logout" />
+  </interface>
   <script type="text/brightscript" uri="MainMenu.brs" />
   <children>
     <LayoutGroup
@@ -11,15 +14,7 @@
           id = "menulist"
           translation = "[160,92]"
           itemSize = "[440,48]" >
-
-        <ContentNode id = "moviemenucontent" role = "content" >
-
-          <ContentNode id="loginbutton" title = "Login" />
-          <ContentNode title = "Shows" />
-          <ContentNode title = "Search" />
-
-        </ContentNode>
-
+        <ContentNode id = "menucontent" role = "content" />
       </LabelList>
     </LayoutGroup>
   </children>
