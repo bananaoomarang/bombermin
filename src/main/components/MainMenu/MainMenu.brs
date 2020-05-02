@@ -5,6 +5,13 @@ sub Init()
     m.top.ObserveField("focusedChild", "OnFocusedChildChanged")
     m.top.ObserveField("itemFocused", "OnItemFocusedChanged")
 
+    m.top.SetFields({
+        theme: {
+            BackgroundColor: "@{background_color}"
+            OverhangLogoUri: "@{images.top_image}"
+        }
+    })
+
     RefreshButtons()
 end sub
 

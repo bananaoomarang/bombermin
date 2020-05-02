@@ -4,6 +4,11 @@ function ShowEpisodePickerView(videoShow = invalid as Object) as Object
     ' Create an CategoryListView object and set the posterShape field
     episodePicker = CreateObject("roSGNode", "CategoryListView")
     episodePicker.posterShape = "16x9"
+    episodePicker.theme = {
+        BackgroundColor: "@{background_color}"
+        OverhangLogoUri: "@{images.top_image}"
+    }
+
     content = CreateObject("roSGNode", "ContentNode")
     ' This gets the seasonContent we parsed out in GridHandler
     content.AddFields({

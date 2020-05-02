@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<component name="MainMenu" extends="Group" >
+<component name="MainMenu" extends="SGDEXComponent" >
   <interface>
     <function name="Logout" />
   </interface>

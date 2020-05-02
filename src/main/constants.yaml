@@ -1,2 +1,5 @@
 components: 'pkg:/compontents'
 source: 'pkg:/source'
+images:
+  top_image: 'pkg:/images/bar_image.png'
+background_color: "#262626"

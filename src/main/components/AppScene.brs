@@ -28,6 +28,10 @@ end sub
 
 function ShowSearchView() as object
     searchView = CreateObject("roSGNode", "SearchView")
+    searchView.theme = {
+        BackgroundColor: "@{background_color}"
+        OverhangLogoUri: "@{images.top_image}"
+    }
     searchView.hintText = "Enter search term"
     ' query field will be changed each time user has typed something
     searchView.ObserveFieldScoped("query", "OnSearchQuery")

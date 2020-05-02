@@ -10,5 +10,3 @@ mm_icon_side_sd=pkg:/images/icon_side_sd.png
 splash_screen_fhd=pkg:/images/splash_fhd.jpg
 splash_screen_hd=pkg:/images/splash_hd.jpg
 splash_screen_sd=pkg:/images/splash_sd.jpg
-ui_resolutions=hd
-bs_libs_required=roku_ads_lib

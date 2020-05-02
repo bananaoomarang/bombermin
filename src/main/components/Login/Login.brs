@@ -9,6 +9,13 @@ sub Init()
     m.top.ObserveField("itemFocused", "OnItemFocusedChanged")
 
     m.buttons.ObserveField("buttonSelected", "OnButtonSelected")
+
+    m.top.SetFields({
+        theme: {
+            BackgroundColor: "@{background_color}"
+            OverhangLogoUri: "@{images.top_image}"
+        }
+    })
 end sub
 
 sub OnFocusedChildChanged()

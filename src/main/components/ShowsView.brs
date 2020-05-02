@@ -4,6 +4,10 @@ function ShowShowsView() as Object
     m.grid.SetFields({
         style: "standard"
         posterShape: "16x9"
+        theme: {
+            BackgroundColor: "@{background_color}"
+            OverhangLogoUri: "@{images.top_image}"
+        }
     })
     m.grid.ObserveField("rowItemSelected", "OnShowSelected")
     content = CreateObject("roSGNode", "ContentNode")
