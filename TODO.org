@@ -1,5 +1,4 @@
-** Pagination for shows view
-*** For search view
-
-** Better login flow
+** Pagination for search view
 ** Less janky pagination on episodes view
+** Search/filter individual shows
+** Figure out how to set the 'theme' one/less places
