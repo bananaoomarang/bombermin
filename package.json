@@ -9,6 +9,7 @@
     },
     "scripts": {
         "install": "ukor install main",
+        "package": "ukor package main",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "Milo Mordaunt <milomord@gmail.com>",
