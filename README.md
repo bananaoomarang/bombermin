@@ -1,6 +1,6 @@
 # Bombermin #
 
-Unofficial Roku app for browsing Giantbomb. Still very much work in progress!
+Unofficial Roku app for browsing Giant Bomb. Still very much work in progress!
 
 Advantages over the official app:
 
