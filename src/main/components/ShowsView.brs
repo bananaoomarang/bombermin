@@ -29,5 +29,10 @@ sub OnShowSelected(event as Object)
     selectedIndex = event.GetData()
     row = grid.content.GetChild(selectedIndex[0])
     videoShow = row.GetChild(selectedIndex[1])
-    ShowEpisodePickerView(videoShow)
+
+    if row.title = "Live"
+        ShowDetailsView(videoShow, 0, false)
+    else
+        ShowEpisodePickerView(videoShow)
+    end if
 end sub
