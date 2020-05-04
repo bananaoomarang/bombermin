@@ -10,7 +10,6 @@ Advantages over the official app:
 
 Still needs:
 
-+ Access to live stuff
 + Better 'browsing' to see new stuff
 + Pagination for search
 + A lot of UI work (right now it is pretty much stock Roku components + some parts are pretty janky)
