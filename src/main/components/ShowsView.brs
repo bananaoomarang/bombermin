@@ -30,7 +30,7 @@ sub OnShowSelected(event as Object)
     row = grid.content.GetChild(selectedIndex[0])
     videoShow = row.GetChild(selectedIndex[1])
 
-    if row.title = "Live"
+    if row.title = "Live" or row.title = "Recent Videos"
         ShowDetailsView(videoShow, 0, false)
     else
         ShowEpisodePickerView(videoShow)

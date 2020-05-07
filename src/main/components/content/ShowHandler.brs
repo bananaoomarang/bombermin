@@ -2,14 +2,18 @@
 
 sub GetContent()
     live_json = GETGBResource("/video/current-live").json
+    recent_json = GETGBResource("/videos", [
+        ["sort", "publish_date:desc"],
+        ["limit", "15"]
+    ]).json
     json = GETGBResource("/video_shows", [
         ["sort", "title:asc"]
     ]).json
-    rootNodeArray = ParseJsonToNodeArray(json, live_json)
+    rootNodeArray = ParseJsonToNodeArray(json, live_json, recent_json)
     m.top.content.Update(rootNodeArray)
 end sub
 
-function ParseJsonToNodeArray(json as Object, live_json as Object) as Object
+function ParseJsonToNodeArray(json as Object, live_json as Object, recent_json as Object) as Object
     if json = invalid then return []
 
     shows = []
@@ -45,6 +49,30 @@ function ParseJsonToNodeArray(json as Object, live_json as Object) as Object
             children: [liveItem]
         })
     end if
+
+    if recent_json <> invalid and recent_json.results <> invalid
+        recentItems = []
+
+        for each video in recent_json.results
+            item = CreateObject("roSGNode", "ContentNode")
+
+            item.SetFields({
+                title: video.name
+                Description: video.deck
+                sdposterurl: video.image.screen_url
+                hdposterurl: video.image.screen_large_url
+                guid: video.guid
+                url: GBBestVideo(video)
+            })
+
+            recentItems.Push(item)
+        end for
+        rows.Push({
+            title: "Recent Videos"
+            children: recentItems
+        })
+    end if
+
     letters = "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z".Split(",")
 
     for each letter in letters
