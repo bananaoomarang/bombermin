@@ -81,4 +81,6 @@ function LoadPage(categoryList as Object, page as Integer)
         }
     })
     categoryList.content = content
+
+    categoryList.animateToItemInCategory = 0
 end function
