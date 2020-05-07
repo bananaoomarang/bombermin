@@ -34,3 +34,24 @@ function GETGBResource(path as String, params = [] as Object) as Object:
         res: rawReponse
     }
 end function
+
+'
+' Return the best available video quality
+'
+' TODO: Also could we make it 'adaptive'?
+'
+function GBBestVideo(item as Object) as String
+    if item.hd_url <> invalid
+        return item.hd_url
+    end if
+
+    if item.high_url <> invalid
+        return item.high_url
+    end if
+
+    if item.low_url <> invalid
+        return item.low_url
+    end if
+
+    return ""
+end function

@@ -22,7 +22,7 @@ sub GetContent()
             Description: item.deck
             sdposterurl: item.image.screen_url
             hdposterurl: item.image.screen_large_url
-            url: item.high_url
+            url: GBBestVideo(item)
         })
     end for
 
