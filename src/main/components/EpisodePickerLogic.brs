@@ -17,6 +17,7 @@ function ShowEpisodePickerView(videoShow = invalid as Object) as Object
             fields: {
                 videoShow: videoShow
                 page: 1
+                order: "desc"
             }
         }
     })
@@ -42,6 +43,9 @@ sub OnEpisodeSelected(event as Object)
         return
     else if item.id = "prev-page"
         PreviousPage(categoryList)
+        return
+    else if item.id = "toggle-order"
+        ToggleOrder(categoryList)
         return
     end if
 
@@ -69,6 +73,7 @@ function LoadPage(categoryList as Object, page as Integer)
     ' Maybe we are supposed to modify the existing content to trigger the update
     '
     videoShow = categoryList.content.HandlerConfigCategoryList.fields.videoShow
+    order = categoryList.content.HandlerConfigCategoryList.fields.order
 
     content = CreateObject("roSGnode", "ContentNode")
     content.AddFields({
@@ -77,10 +82,38 @@ function LoadPage(categoryList as Object, page as Integer)
             fields: {
                 videoShow: videoShow
                 page: page
+                order: order
             }
         }
     })
     categoryList.content = content
 
     categoryList.animateToItemInCategory = 0
+end function
+
+function ToggleOrder(categoryList as Object)
+    videoShow = categoryList.content.HandlerConfigCategoryList.fields.videoShow
+    order = categoryList.content.HandlerConfigCategoryList.fields.order
+
+    if order = "asc"
+        order = "desc"
+    else
+        order = "asc"
+    end if
+
+    content = CreateObject("roSGnode", "ContentNode")
+    content.AddFields({
+        HandlerConfigCategoryList: {
+            name: "EpisodesHandler"
+            fields: {
+                videoShow: videoShow
+                page: 1
+                order: order
+            }
+        }
+    })
+    categoryList.content = content
+
+    categoryList.animateToItemInCategory = 0
+
 end function

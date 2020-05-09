@@ -1,12 +1,13 @@
 sub GetContent()
     videoShow = m.top.videoShow
     page = m.top.page
+    order = m.top.order
 
     offset = (page - 1) * 100
     show_id = videoShow.guid.Split("-")[1]
 
     json = GETGBResource("/videos", [
-        ["sort", "publish_date:asc"],
+        ["sort", "publish_date:" + order],
         ["offset", offset.ToStr()],
         ["filter", "video_show:" + show_id]
     ]).json
@@ -33,13 +34,23 @@ sub GetContent()
         })
     end if
 
-    print json
     if (offset + json.number_of_page_results) < json.number_of_total_results
         seasonAA.children.Push({
             id: "next-page",
             title: "Next page"
         })
     end if
+
+    if order = "asc"
+        orderTitle = "Newest first"
+    else if order = "desc"
+        orderTitle = "Oldest first"
+    end if
+
+    seasonAA.children.Push({
+        id: "toggle-order",
+        title: orderTitle
+    })
 
     seasonAA.Append({
         title: videoShow.title

@@ -5,6 +5,7 @@
     <field id="videoShow" type="node" />
     <field id="episodes" type="node" />
     <field id="page" type="integer" />
+    <field id="order" type="string" />
   </interface>
   <script type="text/brightscript" uri="EpisodesHandler.brs" />
   <script type="text/brightscript" uri="../../source/GBAPI.brs" />
