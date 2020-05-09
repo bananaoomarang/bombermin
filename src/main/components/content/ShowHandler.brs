@@ -4,7 +4,7 @@ sub GetContent()
     live_json = GETGBResource("/video/current-live").json
     recent_json = GETGBResource("/videos", [
         ["sort", "publish_date:desc"],
-        ["limit", "15"]
+        ["limit", "20"]
     ]).json
     json = GETGBResource("/video_shows", [
         ["sort", "title:asc"]
@@ -67,6 +67,16 @@ function ParseJsonToNodeArray(json as Object, live_json as Object, recent_json a
 
             recentItems.Push(item)
         end for
+
+        showMoreItem = CreateObject("roSGNode", "ContentNode")
+        showMoreItem.SetFields({
+            id: "show-more-recent"
+            title: "More recent"
+            fhdposterurl: "pkg:/images/more_fhd.png"
+            hdposterurl: "pkg:/images/more_fhd.png"
+            sdposterurl: "pkg:/images/more_sd.png"
+        })
+        recentItems.Push(showMoreItem)
         rows.Push({
             title: "Recent Videos"
             children: recentItems

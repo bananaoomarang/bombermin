@@ -6,11 +6,16 @@ sub GetContent()
     offset = (page - 1) * 100
     show_id = videoShow.guid.Split("-")[1]
 
-    json = GETGBResource("/videos", [
+    queryParams = [
         ["sort", "publish_date:" + order],
-        ["offset", offset.ToStr()],
-        ["filter", "video_show:" + show_id]
-    ]).json
+        ["offset", offset.ToStr()]
+    ]
+
+    if show_id <> invalid
+        queryParams.Push(["filter", "video_show:" + show_id])
+    end if
+
+    json = GETGBResource("/videos", queryParams).json
 
     seasonAA = {
         children: []
