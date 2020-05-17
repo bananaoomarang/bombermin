@@ -13,7 +13,7 @@ sub OnMenuItemSelected(event as Object)
     selectedIndex = event.GetData()
 
     rowContent = labelList.content.GetChild(selectedIndex)
-    if rowContent.title = "Shows"
+    if rowContent.title = "Browse"
         ShowShowsView()
     else if rowContent.title = "Search"
         ShowSearchView()
@@ -21,6 +21,8 @@ sub OnMenuItemSelected(event as Object)
         ShowLoginView()
     else if rowContent.title = "Logout"
         m.mainmenu.callFunc("Logout")
+    else
+        print "invalid button!"
     end if
     ' detailsView = ShowDetailsView(rowContent, selectedIndex[1])
     ' detailsView.ObserveField("wasClosed", "OnDetailsWasClosed")

@@ -23,16 +23,14 @@ end sub
 
 function RefreshButtons()
     authRegistry = CreateObject("roRegistrySection", "Authentication")
-    if m.loginbutton = invalid
-        m.loginbutton = m.buttons.createChild("ContentNode")
-    end if
+    loginTitle = invalid
 
     if authRegistry.Exists("apiToken") then
-        m.loginbutton.title = "Logout"
+        loginTitle = "Logout"
 
         if m.showsButton = invalid
             m.showsButton = m.buttons.CreateChild("ContentNode")
-            m.showsButton.title = "Shows"
+            m.showsButton.title = "Browse"
         end if
 
         if m.searchButton = invalid
@@ -40,7 +38,7 @@ function RefreshButtons()
             m.searchButton.title = "Search"
         end if
     else
-        m.loginbutton.title = "Login"
+        loginTitle = "Login"
         if m.showsButton <> invalid
             m.buttons.removeChild(m.showsButton)
         end if
@@ -49,6 +47,12 @@ function RefreshButtons()
             m.buttons.removeChild(m.searchButton)
         end if
     end if
+
+    if m.loginbutton = invalid
+        m.loginbutton = m.buttons.createChild("ContentNode")
+    end if
+
+    m.loginbutton.title = loginTitle
 end function
 
 function Logout()
