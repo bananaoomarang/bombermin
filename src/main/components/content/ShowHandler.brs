@@ -1,14 +1,19 @@
 ' ********** Copyright 2019 Roku Corp.  All Rights Reserved. **********
 
 sub GetContent()
-    live_json = GETGBResource("/video/current-live").json
-    recent_json = GETGBResource("/videos", [
+    live_request = GETGBResourceAsync("/video/current-live")
+    recent_request = GETGBResourceAsync("/videos", [
         ["sort", "publish_date:desc"],
         ["limit", "20"]
-    ]).json
-    json = GETGBResource("/video_shows", [
+    ])
+    shows_request = GETGBResourceAsync("/video_shows", [
         ["sort", "title:asc"]
-    ]).json
+    ])
+
+    live_json = GBWaitFor(live_request).json
+    recent_json = GBWaitFor(recent_request).json
+    json = GBWaitFor(shows_request).json
+
     rootNodeArray = ParseJsonToNodeArray(json, live_json, recent_json)
     m.top.content.Update(rootNodeArray)
 end sub
