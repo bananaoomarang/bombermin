@@ -115,3 +115,31 @@ function GBBestVideo(item as Object) as String
 
     return ""
 end function
+
+'
+' Return ContentNode for video object
+'
+function GBVideoToContent(video as Object) as Object
+    item = CreateObject("roSGNode", "ContentNode")
+    item.SetFields({
+        title: video.title
+        Description: video.deck
+        sdposterurl: video.image.screen_url
+        hdposterurl: video.image.screen_large_url,
+        guid: video.guid
+    })
+    return item
+end function
+
+'
+' Return list of ContentNodes for list of videos
+'
+function GBVideosToContent(videos as Object) as Object
+    items = []
+
+    for each video in videos
+        items.Push(GBVideoToContent(video))
+    end for
+
+    return items
+end function

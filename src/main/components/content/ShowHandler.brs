@@ -6,33 +6,74 @@ sub GetContent()
         ["sort", "publish_date:desc"],
         ["limit", "20"]
     ])
+    saved_times_request = GETGBResourceAsync("/video/get-all-saved-times")
     shows_request = GETGBResourceAsync("/video_shows", [
         ["sort", "title:asc"]
     ])
+
+    continue_watching_lookups = GetContinueLookups(saved_times_request, 10)
+    continue_watching = LookupVideos(continue_watching_lookups)
 
     live_json = GBWaitFor(live_request).json
     recent_json = GBWaitFor(recent_request).json
     json = GBWaitFor(shows_request).json
 
-    rootNodeArray = ParseJsonToNodeArray(json, live_json, recent_json)
+    rootNodeArray = ParseJsonToNodeArray(json, live_json, recent_json, continue_watching)
     m.top.content.Update(rootNodeArray)
 end sub
 
-function ParseJsonToNodeArray(json as Object, live_json as Object, recent_json as Object) as Object
+'
+' Get list of videos to lookup for 'continue watching'
+'
+function GetContinueLookups(saved_times_request as Object, max = 5 as Integer) as Object
+    json = GBWaitFor(saved_times_request).json
+    continue_watching_lookups = []
+
+    for each item in json.savedTimes
+        if item.savedTime <> "-1"
+            continue_watching_lookups.Push(item.videoId)
+
+            if continue_watching_lookups.Count() >= max:
+                return continue_watching_lookups
+            end if
+        end if
+    end for
+
+    return continue_watching_lookups
+end function
+
+'
+' Lookup videos in parallel
+'
+function LookupVideos(videoIds as Object) as Object
+    '
+    ' There is no 'map' method so far as I can tell lol
+    '
+    requests = []
+    jsons = []
+    videos = []
+
+    for each id in videoIds
+        requests.Push(GETGBResourceAsync("/video/" + id.ToStr()))
+    end for
+
+    for each request in requests
+        jsons.Push(GBWaitFor(request).json)
+    end for
+
+    for each json in jsons
+        if json.results <> invalid
+            videos.Push(json.results)
+        end if
+    end for
+
+    return videos
+end function
+
+function ParseJsonToNodeArray(json as Object, live_json as Object, recent_json as Object, continue_watching as Object) as Object
     if json = invalid then return []
 
-    shows = []
-    for each item in json.results
-        contentItem = CreateObject("roSGNode", "ContentNode")
-        contentItem.SetFields({
-            title: item.title
-            Description: item.deck
-            sdposterurl: item.image.screen_url
-            hdposterurl: item.image.screen_large_url,
-            guid: item.guid
-        })
-        shows.Push(contentItem)
-    end for
+    shows = GBVideosToContent(json.results)
     rows = []
 
     if live_json <> invalid and live_json.video <> invalid
@@ -56,22 +97,7 @@ function ParseJsonToNodeArray(json as Object, live_json as Object, recent_json a
     end if
 
     if recent_json <> invalid and recent_json.results <> invalid
-        recentItems = []
-
-        for each video in recent_json.results
-            item = CreateObject("roSGNode", "ContentNode")
-
-            item.SetFields({
-                title: video.name
-                Description: video.deck
-                sdposterurl: video.image.screen_url
-                hdposterurl: video.image.screen_large_url
-                guid: video.guid
-                url: GBBestVideo(video)
-            })
-
-            recentItems.Push(item)
-        end for
+        recentItems = GBVideosToContent(recent_json.results)
 
         showMoreItem = CreateObject("roSGNode", "ContentNode")
         showMoreItem.SetFields({
@@ -85,6 +111,14 @@ function ParseJsonToNodeArray(json as Object, live_json as Object, recent_json a
         rows.Push({
             title: "Recent Videos"
             children: recentItems
+        })
+    end if
+
+    if continue_watching.Count() > 0
+        continueItems = GBVideosToContent(continue_watching)
+        rows.Push({
+            title: "Continue Watching"
+            children: continueItems
         })
     end if
 
