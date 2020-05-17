@@ -35,7 +35,7 @@ sub OnShowSelected(event as Object)
         return
     end if
 
-    if row.title = "Live" or row.title = "Recent Videos"
+    if row.title = "Live" or row.title = "Recent Videos" or row.title = "Continue Watching"
         ShowDetailsView(videoShow, 0, false)
         return
     end if

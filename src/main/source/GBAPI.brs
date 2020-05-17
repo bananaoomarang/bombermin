@@ -125,8 +125,10 @@ function GBVideoToContent(video as Object) as Object
         title: video.title
         Description: video.deck
         sdposterurl: video.image.screen_url
-        hdposterurl: video.image.screen_large_url,
+        hdposterurl: video.image.screen_large_url
         guid: video.guid
+        url: GBBestVideo(video)
+        bookmarkPosition: video.saved_time
     })
     return item
 end function
