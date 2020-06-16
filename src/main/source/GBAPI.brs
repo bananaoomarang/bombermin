@@ -24,6 +24,12 @@ function _GenURL(path as String, params as Object) as Object:
     return url
 end function
 
+function _Capitalize(s as String) as String
+    letters = s.Split("")
+    letters[0] = UCase(letters[0])
+    return letters.Join("")
+end function
+
 '
 ' path: API path to resource (example: "/videos")
 ' params: list of query params given as key/val (example: ["resource_type", "video"])
@@ -132,9 +138,17 @@ function GBVideoToContent(video as Object) as Object
         title = video.name
     end if
 
+    hosts = []
+    if video.hosts <> invalid
+        for each host in video.hosts.Split(", ")
+            hosts.Push(_Capitalize(host))
+        end for
+    end if
+
     item.SetFields({
         title: title
         Description: video.deck
+        Actors: hosts
         sdposterurl: video.image.screen_url
         hdposterurl: video.image.screen_large_url
         guid: video.guid
