@@ -126,8 +126,14 @@ end function
 '
 function GBVideoToContent(video as Object) as Object
     item = CreateObject("roSGNode", "ContentNode")
+    title = video.title
+
+    if title = invalid
+        title = video.name
+    end if
+
     item.SetFields({
-        title: video.title
+        title: title
         Description: video.deck
         sdposterurl: video.image.screen_url
         hdposterurl: video.image.screen_large_url
