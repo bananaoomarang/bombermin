@@ -146,6 +146,7 @@ function GBVideoToContent(video as Object) as Object
     end if
 
     item.SetFields({
+        id: video.id
         title: title
         Description: video.deck
         Actors: hosts

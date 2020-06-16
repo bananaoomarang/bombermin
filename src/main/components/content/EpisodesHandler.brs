@@ -22,14 +22,8 @@ sub GetContent()
     }
 
     for each item in json.results:
-        seasonAA.children.Push({
-            id: item.id
-            title: item.name
-            Description: item.deck
-            sdposterurl: item.image.screen_url
-            hdposterurl: item.image.screen_large_url
-            url: GBBestVideo(item)
-        })
+        content = GBVideoToContent(item)
+        seasonAA.children.Push(GBVideoToContent(item))
     end for
 
     if page > 1
