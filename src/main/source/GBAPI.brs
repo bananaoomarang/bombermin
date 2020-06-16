@@ -98,14 +98,19 @@ end function
 '
 ' Return the best available video quality
 '
-' TODO: Also could we make it 'adaptive'?
-'
 function GBBestVideo(item as Object) as String
-    if item.hd_url <> invalid
+    settingsRegistry = CreateObject("roRegistrySection", "Settings")
+    userQuality = settingsRegistry.Read("videoQuality")
+
+    if userQuality = invalid
+        userQuality = "hd"
+    end if
+
+    if item.hd_url <> invalid and userQuality = "fhd"
         return item.hd_url
     end if
 
-    if item.high_url <> invalid
+    if item.high_url <> invalid and (userQuality = "fhd" or userQuality = "hd")
         return item.high_url
     end if
 

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component name="OptionsMenu" extends="SGDEXComponent" >
+  <script type="text/brightscript" uri="OptionsMenu.brs" />
+  <children>
+    <LayoutGroup
+        translation="[640,320]"
+        vertAlignment="center"
+        horizAlignment="center">
+      <RadioButtonList
+          id = "menulist"
+          translation = "[160,92]"
+          itemSize = "[440,48]" >
+        <ContentNode id = "menucontent" role = "content">
+          <ContentNode id = "section-video-quality" title = "Video Quality">
+            <ContentNode title = "FHD" />
+            <ContentNode title = "HD" />
+            <ContentNode title = "SD" />
+          </ContentNode>
+        </ContentNode>
+      </RadioButtonList>
+    </LayoutGroup>
+  </children>
+</component>

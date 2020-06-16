@@ -21,6 +21,8 @@ sub OnMenuItemSelected(event as Object)
         ShowLoginView()
     else if rowContent.title = "Logout"
         m.mainmenu.callFunc("Logout")
+    else if rowContent.title = "Options"
+        ShowOptionsMenu()
     else
         print "invalid button!"
     end if
@@ -82,7 +84,7 @@ sub OnCloseLogin()
         Show({})
     end if
 end sub
-    
+
 
 sub OnSearchItemSelected(event as Object)
     grid = event.GetRoSGNode()
@@ -97,3 +99,24 @@ sub OnDetailsWasClosed(event as Object)
     details = event.GetRoSGNode()
     ' m.grid.jumpToRowItem = [m.grid.rowItemFocused[0], details.itemFocused]
 end sub
+
+function ShowOptionsMenu() as Object
+    m.options = CreateObject("roSGNode", "OptionsMenu")
+    ' m.options.ObserveField("closeSignal", "OnCloseLogin")
+    m.top.ComponentController.CallFunc("show", {
+        view: m.options
+    })
+end function
+
+function OnKeyEvent(key as String, press as Boolean) as Boolean
+    handled = false
+    if press then
+        if key = "options":
+            if m.options = invalid or m.options.visible = false
+                ShowOptionsMenu()
+            end if
+        end if
+    end if
+
+    return handled
+end function

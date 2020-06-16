@@ -53,6 +53,12 @@ function RefreshButtons()
     end if
 
     m.loginbutton.title = loginTitle
+
+    if m.optionsbutton = invalid
+        m.optionsbutton = m.buttons.createChild("ContentNode")
+    end if
+
+    m.optionsbutton.title = "Options"
 end function
 
 function Logout()
