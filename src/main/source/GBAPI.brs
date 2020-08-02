@@ -139,8 +139,8 @@ function GBVideoToContent(video as Object) as Object
     end if
 
     hosts = []
-    if video.hosts <> invalid
-        for each host in video.hosts.Split(", ")
+    if video.crew <> invalid
+        for each host in video.crew.Split(", ")
             hosts.Push(_Capitalize(host))
         end for
     end if
@@ -148,14 +148,15 @@ function GBVideoToContent(video as Object) as Object
     item.SetFields({
         id: video.id
         title: title
-        Description: video.deck
-        Actors: hosts
+        description: video.deck
+        actors: hosts
         sdposterurl: video.image.screen_url
         hdposterurl: video.image.screen_large_url
         guid: video.guid
         url: GBBestVideo(video)
         bookmarkPosition: video.saved_time
     })
+
     return item
 end function
 
