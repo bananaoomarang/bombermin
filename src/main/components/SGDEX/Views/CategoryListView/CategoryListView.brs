@@ -77,7 +77,7 @@ sub initCategoryListViewNodes()
     m.itemsList.itemSize = [650, 180]
     m.itemsList.itemSpacing = [0, 20]
     m.itemsList.numRows = 4
-    m.itemsList.focusBitmapUri = "pkg:/components/SGDEX/Images/focus.9.png"
+    m.itemsList.focusBitmapUri = "@{9_tight_focus_uri}"
 end sub
 
 sub OnWasShown()

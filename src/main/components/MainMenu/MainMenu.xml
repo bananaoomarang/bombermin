@@ -13,7 +13,12 @@
       <LabelList
           id = "menulist"
           translation = "[160,92]"
-          itemSize = "[440,48]" >
+          itemSize = "[440,48]"
+          focusedColor = "0xffffff"
+          color = "0xffffff"
+          focusBitmapUri = "@{9_button_focus_uri}"
+          wrapDividerBitmapUri = "@{9_seperator}"
+          >
         <ContentNode id = "menucontent" role = "content" />
       </LabelList>
     </LayoutGroup>
