@@ -10,7 +10,11 @@
       <RadioButtonList
           id = "menulist"
           translation = "[160,92]"
-          itemSize = "[440,48]" >
+          itemSize = "[440,48]"
+          focusedColor = "0xffffff"
+          color = "0xffffff"
+          focusBitmapUri = "@{9_button_focus_uri}"
+          >
         <ContentNode id = "menucontent" role = "content">
           <ContentNode id = "section-video-quality" title = "Video Quality">
             <ContentNode title = "FHD" />

@@ -109,7 +109,7 @@ sub CreateNewOrUpdateGridNode(componentName = "" as String, fields = {} as Objec
         m.gridNode.AddField("itemTextColorLine2", "color", true)
         m.gridNode.AddField("itemTextBackgroundColor", "string", true)
 
-        m.gridNode.focusBitmapUri = "pkg:/images/poster_focus.9.png"
+        m.gridNode.focusBitmapUri = "@{9_poster_focus_uri}"
 
         if m.LastThemeAttributes <> invalid then
             SGDEX_SetTheme(m.LastThemeAttributes)
