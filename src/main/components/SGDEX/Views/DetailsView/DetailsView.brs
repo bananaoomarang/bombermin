@@ -24,6 +24,7 @@ sub Init()
     font  = CreateObject("roSGNode", "Font")
     font.uri = "@{fonts.press_start}"
     font.size = "@{font_sizes.h2}"
+
     m.buttons.font = font
     m.buttons.focusedFont = font
 
@@ -224,7 +225,7 @@ sub SetDetailsContent(content as Object, isLoadinExtrainfo = false as Boolean)
         end if
         m.info3.text = content.shortDescriptionLine1
         m.descriptionLabel.text = content.description
-        m.actorsLabel.text = ConvertToStringAndJoin(content.actors, ", ")
+        m.actorsLabel.text = "Crew: " + ConvertToStringAndJoin(content.actors, ", ")
     else ' clear content
         SetOverhangTitle("")
         m.poster.uri = ""

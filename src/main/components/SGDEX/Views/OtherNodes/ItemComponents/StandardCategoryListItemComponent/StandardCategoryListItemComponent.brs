@@ -5,8 +5,12 @@ sub Init()
     m.title = m.top.FindNode("title")
     m.description = m.top.FindNode("description")
 
-    m.title.font.size = 20
-    m.description.font.size = 16
+    titleFont  = CreateObject("roSGNode", "Font")
+    titleFont.uri = "@{fonts.press_start}"
+    titleFont.size = "@{font_sizes.h3}"
+
+    m.title.font = titleFont
+    m.description.font.size = "@{font_sizes.h3}"
 end sub
 
 sub itemContentChanged()

@@ -21,7 +21,7 @@
                 maxWidth="0"
                 maxHeight="180"
             />
-            <LayoutGroup translation="[0.0, 10.0]" itemSpacings="[16]">
+            <LayoutGroup translation="[0.0, 16.0]" itemSpacings="[16]">
                 <Label id="title"
                     color="#EFEFEFFF"
                     maxLines="2"

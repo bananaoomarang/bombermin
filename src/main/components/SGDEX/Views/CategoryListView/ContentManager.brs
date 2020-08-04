@@ -410,26 +410,26 @@ sub OnIdleLoadExtraContent()
 '                ? "focusedItem="focusedItem", index="index", itemIndexToCheck="itemIndexToCheck
 
                 categoryIndex = m.itemToSection[itemIndexToCheck]
-                if categoryIndex <> invalid
-                    category = m.categoryList.content.GetChild(categoryIndex)
-                    if category <> invalid
-                        if ShouldLoadDataForRow(category) then
-                            ' we have not populated category
-                            LoadCategoryIfNeeded(categoryIndex)
-                        else if IsPaginationRow(category)
-                            ' This is serial loading
-                            LoadSerialPaginationForItem(itemIndexToCheck)
-                        else
-                            LoadNonSerialPaginationForItem(itemIndexToCheck)
-                            ' need to check pagination
-                            checkCategoryPagination(categoryIndex)                        
-                        end if
-                    else
-                        if m.debug then ? "invalid category"
-                    end if
-                else
-                    if m.debug then ? "invalid category index"
-                end if
+                ' if categoryIndex <> invalid
+                    ' category = m.categoryList.content.GetChild(categoryIndex)
+                '     if category <> invalid
+                '         if ShouldLoadDataForRow(category) then
+                '             ' we have not populated category
+                '             LoadCategoryIfNeeded(categoryIndex)
+                '         else if IsPaginationRow(category)
+                '             ' This is serial loading
+                '             LoadSerialPaginationForItem(itemIndexToCheck)
+                '         else
+                '             LoadNonSerialPaginationForItem(itemIndexToCheck)
+                '             ' need to check pagination
+                '             checkCategoryPagination(categoryIndex)                        
+                '         end if
+                '     else
+                '         if m.debug then ? "invalid category"
+                '     end if
+                ' else
+                '     if m.debug then ? "invalid category index"
+                ' end if
             end for
         end for
         m.currentIdleRadius++

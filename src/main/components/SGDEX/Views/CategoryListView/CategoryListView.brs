@@ -64,6 +64,17 @@ sub initCategoryListViewNodes()
     layoutGroup.translation = [90.0, 0.0]
     layoutGroup.itemSpacings = [2]
 
+
+    font  = CreateObject("roSGNode", "Font")
+    font.uri = "@{fonts.press_start}"
+    font.size = "@{font_sizes.h2}"
+
+    m.titleLabel = layoutGroup.CreateChild("Label")
+    m.titleLabel.font = font
+    m.titleLabel.horizAlign = "center"
+    m.titleLabel.width = "1080"
+    m.titleLabel.height = "50"
+
     m.categoryList = layoutGroup.CreateChild("LabelList")
     m.categoryList.id = "categoryList"
     m.categoryList.itemSpacing = [0, 10]
@@ -224,7 +235,8 @@ sub SetupLists(content as Object)
         focusedIndex = m.itemsList.itemfocused
     end if
 
-    m.categoryList.content = categoryContent
+    ' m.categoryList.content = categoryContent
+    m.titleLabel.text = content.title
     m.itemsList.content = content
 
     'TODO this doesn' t fix focus when user holds down button on item list
