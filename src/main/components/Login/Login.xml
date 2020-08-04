@@ -13,7 +13,11 @@
       <Label text="Enter code from http://www.giantbomb.com/app/bombermin" />
       <Keyboard id="keyboard" />
 
-      <ButtonGroup id="buttons" buttons="[&quot;OK&quot;, &quot;Cancel&quot;]" />
+      <ButtonGroup
+          id="buttons"
+          focusBitmapUri="@{9_button_focus_uri}"
+          focusFootprintBitmapUri="@{9_button_focus_uri}"
+          />
     </LayoutGroup>
   </children>
 </component>

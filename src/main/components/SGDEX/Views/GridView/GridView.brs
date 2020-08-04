@@ -8,6 +8,10 @@ sub Init()
     m.gridNode = invalid
     ' this is to store theme attributes as set theme is called in init o theme should be set after node is created
 
+    m.titleFont = CreateObject("roSGNode", "Font")
+    m.titleFont.uri = "@{fonts.press_start}"
+    m.titleFont.size = "@{font_sizes.h4}"
+
     ' Observe SGDEXComponent fields
     m.top.ObserveField("style", "RebuildRowList")
     m.top.ObserveField("posterShape", "RebuildRowList")
@@ -110,7 +114,9 @@ sub CreateNewOrUpdateGridNode(componentName = "" as String, fields = {} as Objec
         m.gridNode.AddField("itemTextBackgroundColor", "string", true)
 
         m.gridNode.focusBitmapUri = "@{9_poster_focus_uri}"
+        m.gridNode.rowTitleFont = m.titleFont
 
+        print m.LastThemeAttributes
         if m.LastThemeAttributes <> invalid then
             SGDEX_SetTheme(m.LastThemeAttributes)
         end if
@@ -121,6 +127,12 @@ sub CreateNewOrUpdateGridNode(componentName = "" as String, fields = {} as Objec
             end for
             if m.top.content <> invalid then m.gridNode.content = m.top.content
         end if
+
+        '
+        ' Not sure why this is necessary?
+        ' I see it set on the theme...
+        '
+        m.gridNode.rowTitleColor = "@{colors.primary}"
     end if
 
     if m.gridNode <> invalid and fields <> invalid

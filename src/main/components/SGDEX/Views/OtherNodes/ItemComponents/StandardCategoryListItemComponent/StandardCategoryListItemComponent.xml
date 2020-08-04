@@ -13,7 +13,7 @@
         <Rectangle
             width="1080"
             height="180"
-            color="0x202020ff"
+            color="@{colors.background_dark}"
         />
 
         <LayoutGroup layoutDirection="horiz" itemSpacings="[10]" vertAlignment="custom">

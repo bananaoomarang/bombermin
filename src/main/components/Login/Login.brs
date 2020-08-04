@@ -1,6 +1,10 @@
 sub Init()
     m.keyboard = m.top.FindNode("keyboard")
     m.buttons = m.top.FindNode("buttons")
+    m.buttons.buttons = [
+        "OK",
+        "Cancel"
+    ]
 
     m.apiTokenTask = createObject("roSGNode", "ApiTokenTask")
     m.apiTokenTask.ObserveField("content", "SetApiToken")
@@ -16,6 +20,21 @@ sub Init()
             OverhangLogoUri: "@{images.top_image}"
         }
     })
+
+
+    font  = CreateObject("roSGNode", "Font")
+    font.uri = "@{fonts.press_start}"
+    font.size = "@{font_sizes.h2}"
+
+    m.buttons.textFont = font
+    m.buttons.focusedTextFont = font
+
+
+    for each btn in m.buttons.getChildren(- 1, 0)
+        btn.textColor = "@{colors.primary}"
+        btn.focusedTextColor = "@{colors.primary}"
+        btn.iconUri = ""
+    end for
 end sub
 
 sub OnFocusedChildChanged()

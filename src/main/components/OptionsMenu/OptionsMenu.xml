@@ -14,6 +14,8 @@
           focusedColor = "0xffffff"
           color = "0xffffff"
           focusBitmapUri = "@{9_button_focus_uri}"
+          checkedIconUri = "pkg:/images/check_solid.png"
+          focusedCheckedIconUri = "pkg:/images/check_solid.png"
           >
         <ContentNode id = "menucontent" role = "content">
           <ContentNode id = "section-video-quality" title = "Video Quality">

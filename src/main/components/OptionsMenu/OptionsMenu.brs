@@ -7,7 +7,6 @@ sub Init()
 
     m.menuList.ObserveFieldScoped("itemSelected", "OnMenuItemSelected")
 
-
     font  = CreateObject("roSGNode", "Font")
     font.uri = "@{fonts.press_start}"
     font.size = "@{font_sizes.h2}"

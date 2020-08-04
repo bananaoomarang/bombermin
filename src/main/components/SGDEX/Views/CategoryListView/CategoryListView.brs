@@ -62,7 +62,7 @@ sub initCategoryListViewNodes()
     layoutGroup = m.top.viewContentGroup.CreateChild("LayoutGroup")
     layoutGroup.layoutDirection = "vert"
     layoutGroup.translation = [90.0, 0.0]
-    layoutGroup.itemSpacings = [20]
+    layoutGroup.itemSpacings = [2]
 
     m.categoryList = layoutGroup.CreateChild("LabelList")
     m.categoryList.id = "categoryList"
@@ -75,9 +75,10 @@ sub initCategoryListViewNodes()
     m.itemsList.drawFocusFeedbackIfViewUnfocused = false
     m.itemsList.drawFocusFeedbackOnTop = true
     m.itemsList.itemSize = [1080, 180]
-    m.itemsList.itemSpacing = [0, 20]
+    m.itemsList.itemSpacing = [0, 10]
     m.itemsList.numRows = 4
     m.itemsList.focusBitmapUri = "@{9_tight_focus_uri}"
+    m.itemsList.sectionDividerBitmapUri = "@{9_seperator}"
 end sub
 
 sub OnWasShown()
@@ -421,22 +422,22 @@ sub OnItemsListItemFFRewPressed(event as Object)
     end if
 end sub
 
-function onKeyEvent(key as String, press as Boolean) as Boolean
-    handled = false
+' function onKeyEvent(key as String, press as Boolean) as Boolean
+'     handled = false
 
-    if press
-        if key = "left" and m.itemsList.HasFocus()
-            m.categoryListGainFocus = true
-            m.categoryList.SetFocus(true)
-            handled = true
-        else if key = "right" and m.categoryList.HasFocus()
-            m.itemsList.SetFocus(true)
-            handled = true
-        end if
-    end if
+'     if press
+'         if key = "left" and m.itemsList.HasFocus()
+'             m.categoryListGainFocus = true
+'             m.categoryList.SetFocus(true)
+'             handled = true
+'         else if key = "right" and m.categoryList.HasFocus()
+'             m.itemsList.SetFocus(true)
+'             handled = true
+'         end if
+'     end if
 
-    return handled
-end function
+'     return handled
+' end function
 
 sub OnCategoryListTranslationChange(event as Object)
     data = event.GetData()

@@ -14,7 +14,10 @@ colors:
   primary: '0xffffff'
   secondary: '0x999999'
   background: '0x262626'
+  background_dark: '0x191919'
 
 font_sizes:
   h1: '24'
   h2: '20'
+  h3: '18'
+  h4: '16'

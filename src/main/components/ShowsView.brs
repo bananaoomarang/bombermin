@@ -8,6 +8,7 @@ function ShowShowsView() as Object
             BackgroundColor: "@{colors.background}"
             OverhangLogoUri: "@{images.top_image}"
             titleColor: "@{colors.primary}"
+            rowTitleColor: "@{colors.primary}"
             textColor: "@{colors.secondary}"
         }
     })
