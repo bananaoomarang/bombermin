@@ -16,7 +16,7 @@
 
     <children>
         <LayoutGroup 
-            itemSpacings="[6]">
+            itemSpacings="[16]">
             <Label 
                 id="title" 
                 wrap="false" 

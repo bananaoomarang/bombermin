@@ -9,7 +9,9 @@ function ShowShowsView() as Object
             OverhangLogoUri: "@{images.top_image}"
             titleColor: "@{colors.primary}"
             rowTitleColor: "@{colors.primary}"
+            rowCounterColor: "@{colors.primary}"
             textColor: "@{colors.secondary}"
+
         }
     })
     m.grid.ObserveField("rowItemSelected", "OnShowSelected")

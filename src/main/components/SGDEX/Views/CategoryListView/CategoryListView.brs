@@ -71,6 +71,7 @@ sub initCategoryListViewNodes()
 
     m.titleLabel = layoutGroup.CreateChild("Label")
     m.titleLabel.font = font
+    m.titleLabel.color = "@{colors.primary}"
     m.titleLabel.horizAlign = "center"
     m.titleLabel.width = "1080"
     m.titleLabel.height = "50"

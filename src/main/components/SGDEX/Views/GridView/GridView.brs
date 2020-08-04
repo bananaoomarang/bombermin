@@ -115,8 +115,8 @@ sub CreateNewOrUpdateGridNode(componentName = "" as String, fields = {} as Objec
 
         m.gridNode.focusBitmapUri = "@{9_poster_focus_uri}"
         m.gridNode.rowTitleFont = m.titleFont
+        m.gridNode.rowCounterFont = m.titleFont
 
-        print m.LastThemeAttributes
         if m.LastThemeAttributes <> invalid then
             SGDEX_SetTheme(m.LastThemeAttributes)
         end if
@@ -133,6 +133,7 @@ sub CreateNewOrUpdateGridNode(componentName = "" as String, fields = {} as Objec
         ' I see it set on the theme...
         '
         m.gridNode.rowTitleColor = "@{colors.primary}"
+        m.gridNode.rowCounterColor = "@{colors.primary}"
     end if
 
     if m.gridNode <> invalid and fields <> invalid
