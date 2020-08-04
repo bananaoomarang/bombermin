@@ -19,7 +19,6 @@
             itemSpacings="[6]">
             <Label 
                 id="title" 
-                font="font:MediumBoldSystemFont" 
                 wrap="false" 
                 maxLines="1"
             />

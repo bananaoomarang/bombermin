@@ -3,6 +3,12 @@
 sub Init()
     m.titleLabel = m.top.findNode("title")
     m.descriptionLabel = m.top.findNode("description")
+
+    titleFont = CreateObject("roSGNode", "Font")
+    titleFont.uri = "@{fonts.press_start}"
+    titleFont.size = "@{font_sizes.h4}"
+
+    m.titleLabel.font = titleFont
 end sub
 
 sub onMaxWidthChange()
