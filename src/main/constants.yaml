@@ -2,9 +2,19 @@ components: 'pkg:/compontents'
 source: 'pkg:/source'
 images:
   top_image: 'pkg:/images/bar_image.png'
-background_color: "#262626"
+fonts:
+  press_start: 'pkg:/fonts/PressStart2P-Regular.ttf'
 
 9_tight_focus_uri: 'pkg:/images/tight_focus.9.png'
 9_button_focus_uri: 'pkg:/images/button_focus.9.png'
 9_seperator: 'pkg:/images/seperator.9.png'
 9_poster_focus_uri: 'pkg:/images/poster_focus.9.png'
+
+colors:
+  primary: '0xffffff'
+  secondary: '0x999999'
+  background: '0x262626'
+
+font_sizes:
+  h1: '24'
+  h2: '20'

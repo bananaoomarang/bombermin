@@ -57,6 +57,7 @@ sub GetContent()
     })
 
     rootChildren = {
+        title: videoShow.title
         children: [seasonAA]
     }
     m.top.content.Update(rootChildren)

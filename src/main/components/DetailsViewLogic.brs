@@ -25,10 +25,11 @@ function ShowDetailsView(video as Object, index as Integer, isContentList = true
         jumpToItem: index
         isContentList: isContentList,
         theme: {
-            BackgroundColor: "@{background_color}"
+            BackgroundColor: "@{colors.background}"
             OverhangLogoUri: "@{images.top_image}"
         }
     })
+
     ' This will cause the View to be shown on the View
     m.top.ComponentController.CallFunc("show", {
         view: details

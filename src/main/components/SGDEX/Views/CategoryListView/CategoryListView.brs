@@ -60,7 +60,7 @@ end sub
 
 sub initCategoryListViewNodes()
     layoutGroup = m.top.viewContentGroup.CreateChild("LayoutGroup")
-    layoutGroup.layoutDirection = "horiz"
+    layoutGroup.layoutDirection = "vert"
     layoutGroup.translation = [90.0, 0.0]
     layoutGroup.itemSpacings = [20]
 
@@ -74,7 +74,7 @@ sub initCategoryListViewNodes()
     m.itemsList.itemComponentName = "StandardCategoryListItemComponent"
     m.itemsList.drawFocusFeedbackIfViewUnfocused = false
     m.itemsList.drawFocusFeedbackOnTop = true
-    m.itemsList.itemSize = [650, 180]
+    m.itemsList.itemSize = [1080, 180]
     m.itemsList.itemSpacing = [0, 20]
     m.itemsList.numRows = 4
     m.itemsList.focusBitmapUri = "@{9_tight_focus_uri}"

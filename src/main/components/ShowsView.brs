@@ -5,8 +5,10 @@ function ShowShowsView() as Object
         style: "standard"
         posterShape: "16x9"
         theme: {
-            BackgroundColor: "@{background_color}"
+            BackgroundColor: "@{colors.background}"
             OverhangLogoUri: "@{images.top_image}"
+            titleColor: "@{colors.primary}"
+            textColor: "@{colors.secondary}"
         }
     })
     m.grid.ObserveField("rowItemSelected", "OnShowSelected")

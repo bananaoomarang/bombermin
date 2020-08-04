@@ -12,7 +12,7 @@ sub Init()
 
     m.top.SetFields({
         theme: {
-            BackgroundColor: "@{background_color}"
+            BackgroundColor: "@{colors.background}"
             OverhangLogoUri: "@{images.top_image}"
         }
     })

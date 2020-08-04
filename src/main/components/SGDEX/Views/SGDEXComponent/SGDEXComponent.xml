@@ -110,6 +110,6 @@
 
         <Group id="viewContentGroup" />
 
-        <Overhang id="overhang"  showOptions="true" showClock="false" />
+        <Overhang id="overhang"  showOptions="false" showClock="false" />
     </children>
 </component>

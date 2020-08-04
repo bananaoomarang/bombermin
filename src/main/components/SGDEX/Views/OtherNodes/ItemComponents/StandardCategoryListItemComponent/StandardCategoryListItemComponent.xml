@@ -11,7 +11,7 @@
     
     <children>
         <Rectangle
-            width="650"
+            width="1080"
             height="180"
             color="0x202020ff"
         />

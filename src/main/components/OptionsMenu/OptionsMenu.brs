@@ -7,9 +7,17 @@ sub Init()
 
     m.menuList.ObserveFieldScoped("itemSelected", "OnMenuItemSelected")
 
+
+    font  = CreateObject("roSGNode", "Font")
+    font.uri = "@{fonts.press_start}"
+    font.size = "@{font_sizes.h2}"
+
+    m.menulist.font = font
+    m.menulist.focusedFont = font
+
     m.top.SetFields({
         theme: {
-            BackgroundColor: "@{background_color}"
+            BackgroundColor: "@{colors.background}"
             OverhangLogoUri: "@{images.top_image}"
         }
     })

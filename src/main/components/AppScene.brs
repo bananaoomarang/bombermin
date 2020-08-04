@@ -33,7 +33,7 @@ end sub
 function ShowSearchView() as object
     searchView = CreateObject("roSGNode", "SearchView")
     searchView.theme = {
-        BackgroundColor: "@{background_color}"
+        BackgroundColor: "@{colors.background}"
         OverhangLogoUri: "@{images.top_image}"
     }
     searchView.hintText = "Enter search term"

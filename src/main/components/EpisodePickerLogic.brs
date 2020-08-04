@@ -5,7 +5,7 @@ function ShowEpisodePickerView(videoShow = invalid as Object) as Object
     episodePicker = CreateObject("roSGNode", "CategoryListView")
     episodePicker.posterShape = "16x9"
     episodePicker.theme = {
-        BackgroundColor: "@{background_color}"
+        BackgroundColor: "@{colors.background}"
         OverhangLogoUri: "@{images.top_image}"
     }
 

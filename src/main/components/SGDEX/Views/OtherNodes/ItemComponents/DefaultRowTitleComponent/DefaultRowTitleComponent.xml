@@ -13,7 +13,7 @@
         <Label 
             id="title" 
             width="330" 
-            wrap="false" 
+            wrap="false"
             font="font:SmallBoldSystemFont"
         />
     </children>

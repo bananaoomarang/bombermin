@@ -133,6 +133,10 @@
                     numRows="3"
                     itemSpacing="[0,10]"
                     itemSize="[593, 48]"
+                    focusedColor = "0xffffff"
+                    color = "0xffffff"
+                    focusBitmapUri = "@{9_button_focus_uri}"
+                    wrapDividerBitmapUri = "@{9_seperator}"
                 />
 
                 <LayoutGroup

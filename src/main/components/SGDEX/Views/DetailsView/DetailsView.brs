@@ -21,6 +21,12 @@ sub Init()
     m.buttons =          m.top.FindNode("buttons")
     m.styledPosterArea = m.top.FindNode("styledPosterArea")
 
+    font  = CreateObject("roSGNode", "Font")
+    font.uri = "@{fonts.press_start}"
+    font.size = "@{font_sizes.h2}"
+    m.buttons.font = font
+    m.buttons.focusedFont = font
+
     m.detailsGroup = m.top.findNode("detailsGroup")
     m.top.viewContentGroup.appendChild(m.detailsGroup)
 
