@@ -133,6 +133,12 @@
         <!-- Current focued item index from current focusedCategory -->
         <field id="focusedItemInCategory" type="int" alwaysNotify="true" />
 
+        <field id="dialog" type="node" />
+
+        <!-- @Public -->
+        <!-- Selected item in options menu -->
+        <field id="selectedOption" type="int" alwaysNotify="true"/>
+
         <!-- @Public -->
         <!-- Current focused category index.  -->
         <field id="focusedCategory" type="int" alwaysNotify="true" />

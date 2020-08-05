@@ -40,17 +40,6 @@ sub GetContent()
         })
     end if
 
-    if order = "asc"
-        orderTitle = "Newest first"
-    else if order = "desc"
-        orderTitle = "Oldest first"
-    end if
-
-    seasonAA.children.Push({
-        id: "toggle-order",
-        title: orderTitle
-    })
-
     seasonAA.Append({
         title: videoShow.title
         contentType: "section"

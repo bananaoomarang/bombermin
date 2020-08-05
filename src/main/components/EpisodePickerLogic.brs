@@ -7,6 +7,11 @@ function ShowEpisodePickerView(videoShow = invalid as Object) as Object
     episodePicker.theme = {
         BackgroundColor: "@{colors.background}"
         OverhangLogoUri: "@{images.top_image}"
+        OverhangShowOptions: true
+        OverhangOptionsAvailable: true
+        OverhangOptionsText: "Sort Episodes"
+        OverhangOptionsIconColor: "@{colors.primary}"
+        OverhangOptionsIconColor: "@{colors.primary}"
     }
 
     content = CreateObject("roSGNode", "ContentNode")
@@ -23,12 +28,23 @@ function ShowEpisodePickerView(videoShow = invalid as Object) as Object
     })
     episodePicker.content = content
     episodePicker.ObserveField("selectedItem", "OnEpisodeSelected")
+    episodePicker.ObserveField("selectedOption", "OnOptionSelected")
     ' This will show the CategoryListView to the View and call SeasonsHandler
     m.top.ComponentController.CallFunc("show", {
         view: episodePicker
     })
     return episodePicker
 end function
+
+sub OnOptionSelected(event as Object)
+    categoryList = event.GetRoSGNode()
+    buttonSelected = event.GetData()
+    dialog = categoryList.dialog
+    btn = dialog.buttonGroup.getChild(buttonSelected)
+
+    ToggleOrder(categoryList)
+    dialog.close = true
+end sub
 
 sub OnEpisodeSelected(event as Object)
     ' GetRoSGNode returns the object that was being observed
@@ -43,9 +59,6 @@ sub OnEpisodeSelected(event as Object)
         return
     else if item.id = "prev-page"
         PreviousPage(categoryList)
-        return
-    else if item.id = "toggle-order"
-        ToggleOrder(categoryList)
         return
     end if
 

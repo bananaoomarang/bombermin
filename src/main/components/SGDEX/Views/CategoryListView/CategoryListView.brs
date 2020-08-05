@@ -65,12 +65,12 @@ sub initCategoryListViewNodes()
     layoutGroup.itemSpacings = [2]
 
 
-    font  = CreateObject("roSGNode", "Font")
-    font.uri = "@{fonts.press_start}"
-    font.size = "@{font_sizes.h2}"
+    m.titleFont  = CreateObject("roSGNode", "Font")
+    m.titleFont.uri = "@{fonts.press_start}"
+    m.titleFont.size = "@{font_sizes.h2}"
 
     m.titleLabel = layoutGroup.CreateChild("Label")
-    m.titleLabel.font = font
+    m.titleLabel.font = m.titleFont
     m.titleLabel.color = "@{colors.primary}"
     m.titleLabel.horizAlign = "center"
     m.titleLabel.width = "1080"
@@ -435,22 +435,62 @@ sub OnItemsListItemFFRewPressed(event as Object)
     end if
 end sub
 
-' function onKeyEvent(key as String, press as Boolean) as Boolean
-'     handled = false
+sub ShowDialog()
+    dialog = createObject("roSGNode", "Dialog")
+    dialog.backgroundUri = "@{9_tight_focus_solid_uri}"
+    dialog.title = "Sort by"
+    dialog.titleFont = m.titleFont
+    dialog.iconUri = ""
+    dialog.dividerUri = "@{9_seperator}"
+    dialog.optionsDialog = true
 
-'     if press
-'         if key = "left" and m.itemsList.HasFocus()
-'             m.categoryListGainFocus = true
-'             m.categoryList.SetFocus(true)
-'             handled = true
-'         else if key = "right" and m.categoryList.HasFocus()
-'             m.itemsList.SetFocus(true)
-'             handled = true
-'         end if
-'     end if
+    order = m.top.content.HandlerConfigCategoryList.fields.order
 
-'     return handled
-' end function
+    if order = "desc"
+        dialog.buttons = [
+            "Oldest first",
+        ]
+    else
+        dialog.buttons = [
+            "Newest first",
+        ]
+    end if
+
+    dialog.buttonGroup.focusBitmapUri = "@{9_button_focus_uri}"
+    dialog.buttonGroup.focusFootprintBitmapUri="@{9_button_focus_uri}"
+    dialog.buttonGroup.iconUri = ""
+    dialog.buttonGroup.focusedIconUri = ""
+    dialog.buttonGroup.textFont = m.titleFont
+    dialog.buttonGroup.focusedTextFont = m.titleFont
+    for each btn in dialog.buttonGroup.getChildren(- 1, 0)
+        btn.textColor = "@{colors.primary}"
+        btn.focusedTextColor = "@{colors.primary}"
+    end for
+
+    
+    dialog.ObserveField("buttonSelected", "OnOptionSelected")
+
+    m.top.dialog = dialog
+    m.top.GetScene().dialog = dialog
+end sub
+
+sub OnOptionSelected(event as Object)
+    buttonSelected = event.GetData()
+    m.top.selectedOption = buttonSelected
+end sub
+
+function onKeyEvent(key as String, press as Boolean) as Boolean
+    handled = false
+
+    if press
+        if key = "options"
+            showDialog()
+            handled = true
+        end if
+    end if
+
+    return handled
+end function
 
 sub OnCategoryListTranslationChange(event as Object)
     data = event.GetData()
