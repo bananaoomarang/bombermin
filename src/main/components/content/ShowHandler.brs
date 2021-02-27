@@ -54,7 +54,9 @@ function LookupVideos(videoIds as Object) as Object
     videos = []
 
     for each id in videoIds
-        requests.Push(GETGBResourceAsync("/video/" + id.ToStr()))
+        if id <> invalid
+            requests.Push(GETGBResourceAsync("/video/" + id.ToStr()))
+        end if
     end for
 
     for each request in requests
@@ -62,7 +64,7 @@ function LookupVideos(videoIds as Object) as Object
     end for
 
     for each json in jsons
-        if json.results <> invalid
+        if json <> invalid and json.results <> invalid
             videos.Push(json.results)
         end if
     end for
