@@ -108,8 +108,8 @@ function GBBestVideo(item as Object) as String
     settingsRegistry = CreateObject("roRegistrySection", "Settings")
     userQuality = settingsRegistry.Read("videoQuality")
 
-    if userQuality = invalid
-        userQuality = "hd"
+    if userQuality = invalid or userQuality = ""
+        userQuality = "fhd"
     end if
 
     if item.hd_url <> invalid and userQuality = "fhd"
@@ -143,6 +143,10 @@ function GBVideoToContent(video as Object) as Object
         for each host in video.crew.Split(", ")
             hosts.Push(_Capitalize(host))
         end for
+    else if video.hosts <> invalid
+        for each host in video.hosts.Split(", ")
+            hosts.Push(_Capitalize(host))
+        end for
     end if
 
     item.SetFields({
@@ -156,6 +160,16 @@ function GBVideoToContent(video as Object) as Object
         url: GBBestVideo(video)
         bookmarkPosition: video.saved_time
     })
+
+    authRegistry = CreateObject("roRegistrySection", "Authentication")
+    apiKey = ""
+    if authRegistry.Exists("apiToken") then
+        apiKey = authRegistry.Read("apiToken")
+    end if
+
+    if apiKey <> ""
+        item.url = item.url + "?api_key=" + apiKey
+    end if
 
     return item
 end function
