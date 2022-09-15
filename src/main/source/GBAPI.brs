@@ -132,6 +132,9 @@ end function
 '
 function GBVideoToContent(video as Object) as Object
     item = CreateObject("roSGNode", "ContentNode")
+    if video.Count() = 0
+        return item
+    end if
     title = video.title
 
     if title = invalid
